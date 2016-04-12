@@ -33,6 +33,7 @@
 \newtheorem*{definition}{Definition}
 \newcommand{\gdw}{\ \Leftrightarrow\ }
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\Oh}{\mathcal{O}}
 \DeclareMathOperator{\im}{im}
 
 \usepackage{fancyhdr}
@@ -77,8 +78,6 @@
         Gibt es eine Menge $T' \subset T$ mit $|T'| = n$, so dass jedes Element
         in $W \cup X \cup Y \cup Z$ in genau einem der Tupel in $T'$ vorkommt?
     \end{definition}
-
-\item
     \begin{proposition}
         \textsc{4D-Matching} ist $NP$-vollständig.
     \end{proposition}
@@ -142,6 +141,25 @@
         \end{enumerate}
         Aus i. und ii. folgt, dass \textsc{4D-Matching} $NP$-vollständig ist.
     \end{proof}
+
+    \item
+        \begin{proposition}
+            \textsc{$k$-Clique} ist für kein festes $k \geq 1$
+            $NP$-vollständig, solange $P \neq NP$.
+        \end{proposition}
+        \begin{proof}
+            Wir zeigen, dass \textsc{$k$-Clique} $\in P$, indem wir einen
+            Algorithmus angeben, der \textsc{$k$-Clique} in Polynomialzeit
+            entscheidet.
+            Sei $n = |V|$.
+            Dann gibt es $\binom{n}{k} \in \Oh(n^k)$ Subgraphen der Größe $k$.
+            In jedem dieser Subgraphen gibt es $\Oh(k^2)$ Kanten, die auf
+            Existenz überprüft werden müssen.
+            Damit kann \textsc{$k$-Clique} in $\Oh(n^kk^2)$ entschieden werden,
+            also in Polynomialzeit, da $k$ fix ist.
+
+            Damit ist \textsc{$k$-Clique} nicht $NP$-vollständig, solange $P \neq NP$.
+        \end{proof}
 
 \end{enumerate}
 
