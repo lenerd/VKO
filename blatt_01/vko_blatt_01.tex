@@ -1,0 +1,238 @@
+\documentclass[a4paper]{scrartcl}
+
+% font/encoding packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[ngerman]{babel}
+\usepackage[ngerman=ngerman-x-latest]{hyphsubst}
+
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{mathtools}
+\usepackage{array}
+\usepackage{stmaryrd}
+\usepackage{marvosym}
+\usepackage{subcaption}
+\allowdisplaybreaks{}
+\usepackage[output-decimal-marker={,}]{siunitx}
+\usepackage[shortlabels]{enumitem}
+\usepackage[section]{placeins}
+\usepackage{float}
+\usepackage{units}
+\usepackage{listings}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+\usepackage{xcolor}
+\definecolor{light-gray}{HTML}{cccccc}
+
+
+\newtheorem*{proposition}{Behauptung}
+\newtheorem*{definition}{Definition}
+\newcommand{\gdw}{\ \Leftrightarrow\ }
+\newcommand{\N}{\mathbb{N}}
+\DeclareMathOperator{\im}{im}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\lstset{%
+    frame=single,
+    numbers=left,
+    keepspaces,
+    language=R,
+    title=Listing: \lstname,
+}
+
+\def \blattnr {1}
+
+\lhead{VKO -- Blatt {\blattnr}}
+\rhead{Alina Bombeck, Lennart Braun, Carolin Konietzny}
+\cfoot{\thepage}
+
+
+\title{Vertiefung Kombinatorische Optimierung}
+\subtitle{Blatt {\blattnr} Hausaufgaben}
+\author{%
+    Alina Bombeck,
+    Lennart Braun,
+    Carolin Konietzny
+}
+\date{zum 18. April 2016}
+\usepackage{pdfpages} 
+
+\begin{document}
+\maketitle
+
+
+\begin{enumerate}[label=\bfseries \arabic*]
+\item % 1.
+\begin{enumerate}
+\item
+    \begin{definition}[\textsc{4D-Matching}]
+        Seien $W,X,Y,Z$ Mengen mit je $n$ Elementen.
+        Sei $T \subset X \times X \times Y \times Z$.
+        Gibt es eine Menge $T' \subset T$ mit $|T'| = n$, so dass jedes Element
+        in $W \cup X \cup Y \cup Z$ in genau einem der Tupel in $T'$ vorkommt?
+    \end{definition}
+
+\item
+    \begin{proposition}
+        \textsc{4D-Matching} ist $NP$-vollständig.
+    \end{proposition}
+    \begin{proof}
+        \hfill \\
+        \begin{enumerate}
+            \item \textsc{4D-Matching} $\in NP$: \\
+                Ein Verifikationsalgorithmus kann in polynomieller Zeit zeigen,
+                dass eine Ja-Eingabe vorliegt: Das Zertifikat ist dabei die
+                Menge der Tupel $T'$. In $n$ Schritten kann über $T'$ iteriert
+                werden, wobei in jedem Schritt jeweils genau ein Element aus
+                den Mengen $W,X,Y,Z$ entfernt wird. Ist dies nicht möglich,
+                handelt es sich nicht um ein gültiges Zertifikat; andernfalls
+                wird die Korrektheit der Lösung bestätigt.
+
+            \item \textsc{4D-Matching} ist $NP$-schwierig: \\
+                Wir reduzieren \textsc{3D-Matching} auf \textsc{4D-Matching}:
+                Sei $\langle X,Y,Z,T \rangle$ eine Eingabe für
+                \textsc{3D-Matching} und $n = |X|$.  Wir erzeugen eine weitere
+                Menge $W = \{w_1, \dotsc, w_n\}$ und eine Menge an Tupeln
+                $\overline{T} = W \times T$.  $\langle W,X,Y,Z,\overline{T}
+                \rangle$ ist nun eine Eingabe für \textsc{4D-Matching}. Wir
+                zeigen nun, dass für $\langle X,Y,Z,T \rangle$ genau dann eine
+                Ja-Eingabe für \textsc{3D-Matching} ist, wenn ein
+                \textsc{4D-Matching} für $\langle W,X,Y,Z,\overline{T} \rangle$
+                existiert.
+                \begin{itemize}
+                    \item $\Rightarrow$: \\
+                        Sei $T' = \{t_1, \dotsc, t_n\}$ ($t_i = (x_i, y_i,
+                        z_i)$) ein \textsc{3D-Matching}.  $\overline{T'}$ werde
+                        wie folgt konstruiert:
+                        \begin{equation*}
+                            \overline{T'} = \{ (w_i, x_i, y_i, z_i)\ |\ i = 1, \dotsc, n \}
+                        \end{equation*}
+                        Man sieht, dass $\underline{T'}$ ein
+                        \textsc{4D-Matching} bildet, da jedes Tupel aus einem
+                        der Tripel aus $T'$ sowie einem Element aus $W$
+                        zusammengesetzt wird, wobei jedes $w_i \in W$ exakt
+                        einmal verwendet wird.  Diese Konstruktion ist möglich,
+                        da in $\overline{T}$ jedes Tripel mit jedem $w_i$
+                        kombiniert wurde.
+
+                    \item $\Leftarrow$: \\
+                        Sei $\overline{T'}$ ein \textsc{4D-Matching} für das
+                        konstruierte Problem $\langle W,X,Y,Z,\overline{T}
+                        \rangle$.
+                        \begin{equation*}
+                            T' = \left\{ (x,y,z)\ |\ (w,x,y,z) \in \overline{T'} \right\}
+                        \end{equation*}
+                        ist dann offensichtlich ein \textsc{3D-Matching} für
+                        das ursprüngliche Problem. (Die geforderte Eigenschaft
+                        bleibt für die restlichen drei Mengen bestehen, wenn
+                        die erste Komponente weggelassen wird.)
+                \end{itemize}
+                Es gilt also \textsc{3D-Matching} $\leq_p$
+                \textsc{4D-Matching}, letzteres ist also mindestens so schwer
+                wie ersteres. Da wir von \textsc{3D-Matching} wissen, dass es
+                $NP$-vollständig ist, folgt, dass \textsc{4D-Matching}
+                $NP$-schwierig ist.
+
+        \end{enumerate}
+        Aus i. und ii. folgt, dass \textsc{4D-Matching} $NP$-vollständig ist.
+    \end{proof}
+
+\end{enumerate}
+
+\item % 2.
+\begin{enumerate}
+    \item
+        \begin{proposition}
+            \textsc{Hitting Set} ist $NP$-vollständig.
+        \end{proposition}
+        \begin{proof}
+            \hfill \\
+            \begin{enumerate}
+                \item \textsc{Hitting Set} $\in NP$: \\
+                    Gegeben ein Hitting Set $H$ als Zertifikat, lässt sich in
+                    polynomieller Zeit prüfen, ob $H \subseteq A$ und $H \cap
+                    B_i \neq \emptyset$, $i = 1, \dotsc, m$ gelten.
+
+                \item \textsc{Hitting Set} ist $NP$-schwierig: \\
+                    Wir zeigen dies durch die Reduktion von 3-SAT.
+                    Sei $\phi$ eine Eingabe für 3-SAT. Wir wählen $A$ als die
+                    Menge aller (positiver und negativer) Literate für die
+                    Atome in $\phi$.
+                    Sei $n$ die Anzahl der Atome. Für jedes Atom $a_i$ in
+                    $\phi$ setzeen wir $B_i = \{a_i, \lnot a_i\}$, $i = 1,
+                    \dotsc, n$. Weiterhin seien $B_{n+1}, \dotsc, B_{n+m}$ die
+                    $m$ Klauseln von $\phi$. Wir zeigen nun, dass $\phi$ genau
+                    dann eine Ja-Eingabe für 3-SAT ist, wenn die Literale? mit
+                    wahrem Wahrheitswert einer erfüllenden Belegung von $\phi$
+                    ein Hitting Set für $k = n$ und obige Mengen ist.
+                    \begin{itemize}
+                        \item $\Leftarrow$: \\
+                            Da $k = n$ gilt und $B_1, \dotsc, B_n$ jeweils ein
+                            Literalpaar eines Atoms enthalten, muss im Hitting
+                            Set genau ein Literal für jedes Atom vorkommen.
+                            Weiterhing muss aus jeder der Klauselmengen
+                            $B_{n+1}, \dotsc, B_{n+m}$ mindestens ein Literal
+                            im Hitting Set vorkommen. Nimmt man die Literale im
+                            Hitting Set als wahr an und die restlichen als
+                            false, so ist leicht zu sehen, dass dies eine
+                            erfüllende Belegung für $\phi$ ist, da alle
+                            Klauseln erfüllt sind.
+
+                        \item $\Rightarrow$: \\
+                            Sei nun eine erfüllende Belegung für $\phi$
+                            gegeben. Nach Konstruktion trifft die Menge der
+                            wahren Literale die Mengen $B_1, \dotsc, B_n$ (ein
+                            Atom ist wahr oder falsch). Dann gibt es in jeder
+                            Klausel mindestens ein wahres Literal, die Mengen
+                            $B_{n+1}, \dotsc, B_{n+m}$ werden also auch
+                            getroffen. Es handelt sich um ein Hitting Set der
+                            Größe n.
+                    \end{itemize}
+                    Damit ist gezeigt, dass 3-SAT $\leq_P$ \textsc{Hitting Set}
+                    ist, damit ist letzteres $NP$-schwierig.
+
+            \end{enumerate}
+            Aus i. und ii. folgt, dass \textsc{Hitting Set} $NP$-vollständig ist.
+        \end{proof}
+
+    \item
+        \begin{proposition}
+            Es gilt \textsc{Vertex Cover} $\leq_P$ \textsc{Hitting Set}.
+        \end{proposition}
+        \begin{proof}
+            Wir zeigen die Behauptung durch eine Reduktion.  Sei eine Eingabe
+            für \textsc{Vertex Cover} durch $G = (V, E)$ und $k \geq 1$
+            gegeben. Wir konstruieren eine Eingabe für \textsc{Hitting Set} wie
+            folgt: Wir setzen $A = V$ und $B_i = \{u_i, v_i\}$ für jede Kante
+            $e_i = \{u_i, v_i\} \in E$. $k$ bleibt gleich. Zu zeigen ist, dass eine Eingabe für
+            \textsc{Vertex Cover} genau dann eine Ja-Eingabe ist, wenn die
+            konstruierte Eingabe eine Ja-Eingabe für \textsc{Hitting Set} ist.
+            \begin{itemize}
+                \item $\Rightarrow$: \\
+                    Gegeben sei eine Knotenüberdeckung $V' \subseteq V$ von
+                    $G$. Dann ist $V'$ auch ein Hitting Set, da zu jeder Kante
+                    ein inzidenter Knoten in $V'$ enthalten ist und somit jedes
+                    $B_i$ getroffen wird.
+
+                \item $\Leftarrow$: \\
+                    Sei $V' \subset A = V$ ein Hitting Set für diese
+                    Konstruktion. Nach Definition der $B_i$ ist für jede Kante
+                    $e$ mindestens einer der inzidenten Knoten in $V'$
+                    enthalten. $V'$ bildet also ein \textsc{Vertex Cover}.
+            \end{itemize}
+            Damit ist die Behauptung gezeigt.
+        \end{proof}
+
+\end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}
+
