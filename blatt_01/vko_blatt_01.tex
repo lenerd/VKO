@@ -100,9 +100,12 @@
                 \textsc{3D-Matching} und $n = |X|$.  Wir erzeugen eine weitere
                 Menge $W = \{w_1, \dotsc, w_n\}$ und eine Menge an Tupeln
                 $\overline{T} = W \times T$.  $\langle W,X,Y,Z,\overline{T}
-                \rangle$ ist nun eine Eingabe für \textsc{4D-Matching}. Wir
-                zeigen nun, dass für $\langle X,Y,Z,T \rangle$ genau dann eine
-                Ja-Eingabe für \textsc{3D-Matching} ist, wenn ein
+                \rangle$ ist nun eine Eingabe für \textsc{4D-Matching}.
+                Dies ist effizient möglich, da $T$ maximal $n^3$ Elemente und
+                $\overline{T}$ maximal $n^4$ Elemente enthalten.
+
+                Wir zeigen nun, dass für $\langle X,Y,Z,T \rangle$ genau dann
+                eine Ja-Eingabe für \textsc{3D-Matching} ist, wenn ein
                 \textsc{4D-Matching} für $\langle W,X,Y,Z,\overline{T} \rangle$
                 existiert.
                 \begin{itemize}
@@ -182,21 +185,26 @@
                 \item \textsc{Hitting Set} ist $NP$-schwierig: \\
                     Wir zeigen dies durch die Reduktion von 3-SAT.
                     Sei $\phi$ eine Eingabe für 3-SAT. Wir wählen $A$ als die
-                    Menge aller (positiver und negativer) Literate für die
+                    Menge aller (positiver und negativer) Literale für die
                     Atome in $\phi$.
                     Sei $n$ die Anzahl der Atome. Für jedes Atom $a_i$ in
-                    $\phi$ setzeen wir $B_i = \{a_i, \lnot a_i\}$, $i = 1,
+                    $\phi$ setzen wir $B_i = \{a_i, \lnot a_i\}$, $i = 1,
                     \dotsc, n$. Weiterhin seien $B_{n+1}, \dotsc, B_{n+m}$ die
-                    $m$ Klauseln von $\phi$. Wir zeigen nun, dass $\phi$ genau
-                    dann eine Ja-Eingabe für 3-SAT ist, wenn die Literale? mit
-                    wahrem Wahrheitswert einer erfüllenden Belegung von $\phi$
-                    ein Hitting Set für $k = n$ und obige Mengen ist.
+                    $m$ Klauseln von $\phi$.
+                    Diese Reduktion ist ebenfalls effizient möglich, da linear
+                    in $n+m$ Mengen erstellt werden müssen, die jeweils eine
+                    konstante Anzahl an Elementen beinhalten.
+
+                    Wir zeigen nun, dass $\phi$ genau dann eine Ja-Eingabe für
+                    3-SAT ist, wenn die Literale mit wahrem Wahrheitswert einer
+                    erfüllenden Belegung von $\phi$ ein Hitting Set für $k = n$
+                    und obige Mengen ist.
                     \begin{itemize}
                         \item $\Leftarrow$: \\
                             Da $k = n$ gilt und $B_1, \dotsc, B_n$ jeweils ein
                             Literalpaar eines Atoms enthalten, muss im Hitting
                             Set genau ein Literal für jedes Atom vorkommen.
-                            Weiterhing muss aus jeder der Klauselmengen
+                            Weiterhin muss aus jeder der Klauselmengen
                             $B_{n+1}, \dotsc, B_{n+m}$ mindestens ein Literal
                             im Hitting Set vorkommen. Nimmt man die Literale im
                             Hitting Set als wahr an und die restlichen als
@@ -230,9 +238,12 @@
             für \textsc{Vertex Cover} durch $G = (V, E)$ und $k \geq 1$
             gegeben. Wir konstruieren eine Eingabe für \textsc{Hitting Set} wie
             folgt: Wir setzen $A = V$ und $B_i = \{u_i, v_i\}$ für jede Kante
-            $e_i = \{u_i, v_i\} \in E$. $k$ bleibt gleich. Zu zeigen ist, dass eine Eingabe für
-            \textsc{Vertex Cover} genau dann eine Ja-Eingabe ist, wenn die
-            konstruierte Eingabe eine Ja-Eingabe für \textsc{Hitting Set} ist.
+            $e_i = \{u_i, v_i\} \in E$. $k$ bleibt gleich.
+            Da die Eingabe von \textsc{Vertex Cover} quasi übernommen wird, ist
+            dies in Polynomialzeit möglich.
+            Zu zeigen ist, dass eine Eingabe für \textsc{Vertex Cover} genau
+            dann eine Ja-Eingabe ist, wenn die konstruierte Eingabe eine
+            Ja-Eingabe für \textsc{Hitting Set} ist.
             \begin{itemize}
                 \item $\Rightarrow$: \\
                     Gegeben sei eine Knotenüberdeckung $V' \subseteq V$ von
