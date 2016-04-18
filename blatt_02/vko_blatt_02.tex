@@ -79,15 +79,18 @@
     \begin{proof}
         \hfill \\
         \begin{enumerate}
-            \item TODO
+            \item Das \text{RESOURCE RESERVATION PROBLEM} liegt in NP. IDese Behauptung wird im Folgenden bewiesen.  
+            Man rate eine Ja-Eingabe und zeigt in polynomieller Zeit, dass es sich um eine gültige Lösung handelt, indem man $|Prozesse| = k$ prüft und sicherstellt, dsas die Ressourcenmengen der Prozesse miteinander disjunkt sind.
+            \item Das Problem Ressource Reservation Problem ist NP-vollständig, da es nur eine andere Formulierung des Set-Packing-Problems ist, welches nachgewiesenerweise NP-vollständig ist.
         \end{enumerate}
     \end{proof}
 
     \item % b)
-        TODO
+       Wenn k auf 2 gesetzt wird, ist das Problem in P, da man um es zu lösen nur jeweils 2 Mengen auf Disjunktivität vergleichen muss.
+
 
     \item % c)
-        TODO
+     Das Problem ist eine Umschreibung des Problems der bipartiten Graphen. Das maximale Matching muss hierbei mindestens so groß wie die erforderte Anzahl k der Prozesse erreichen. Ein polynomieller Algorithmus, um dieses Problem zu lösen ist durch Edmond/Karp gegeben.
 
     \item % d)
         TODO
@@ -100,7 +103,27 @@
     \item % a)
         TODO
     \item % b)
-        TODO
+     NUMBER PARTITION INTO EQUAL PARTS (PARTITION) ist in NP, da es ein Spezialfall von SUBSET SUM ist.
+    \begin{proposition}
+        \[ \text{SUBSET SUM} \leq_{p} \text{PARTITION} \]
+    \end{proposition}
+    \begin{proof}
+        \hfill \\
+        \begin{enumerate}
+            \item Eingabe SUBSET SUM: Positive ganze Zahlen $x_1, .... x_n$ , W = Zielgröße
+            \item Sei X = $\sum_{i=1}^{n} a_i $
+            \item Umformung in Eingabe für PARTITION: n + 2 Zahlen\\ 
+            \begin{itemize}
+            \item $y_i = x_i für 1 <= i <= n $ 
+            \item $y_{n+1} = 2x - W$  
+            \item $y_{n+2} = x + W$  
+            \end{itemize}
+            TODO BILD
+
+            \item Reduktion ist in polynomieller Zeit berechenbar 
+
+        \end{enumerate}
+    \end{proof}
 \end{enumerate}
 
 \end{enumerate}
