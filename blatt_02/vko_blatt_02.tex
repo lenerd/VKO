@@ -57,10 +57,10 @@
 \title{Vertiefung Kombinatorische Optimierung}
 \subtitle{Blatt {\blattnr} Hausaufgaben}
 \author{%
-    Alina Bombeck,
-    Lennart Braun,
-    Carolin Konietzny,
-    Tronje Krabbe
+    Alina Bombeck (Gruppe 1),
+    Lennart Braun (Gruppe 1),
+    Carolin Konietzny (Gruppe 1),
+    Tronje Krabbe (Gruppe 3)
 }
 \date{zum 25. April 2016}
 \usepackage{pdfpages} 
@@ -112,15 +112,36 @@
         \begin{enumerate}
             \item Eingabe SUBSET SUM: Positive ganze Zahlen $x_1, .... x_n$ , W = Zielgröße
             \item Sei X = $\sum_{i=1}^{n} a_i $
-            \item Umformung in Eingabe für PARTITION: n + 2 Zahlen\\ 
-            \begin{itemize}
-            \item $y_i = x_i für 1 <= i <= n $ 
-            \item $y_{n+1} = 2x - W$  
-            \item $y_{n+2} = x + W$  
-            \end{itemize}
-            TODO BILD
+            \item Umformung in Eingabe für PARTITION: $n + 2$ Zahlen, deren Summe den Wert $4X$ ergibt.\\ 
+            \begin{align*}
+                y_i &= x_i \text{ für } 1 <= i <= n \\
+                y_{n+1} &= 2x - W \\
+                y_{n+2} &= x + W
+            \end{align*}
+            TODO BILD % macht Tronje :)
 
-            \item Reduktion ist in polynomieller Zeit berechenbar 
+            \item
+                \begin{proposition}
+                Reduktion ist in polynomieller Zeit berechenbar.
+                \end{proposition}
+                \begin{proof}
+                    \hfill \\
+                    ``$\Leftarrow$'' \\
+                    Gegeben: eine geeignete Aufteilung der Zahlen für PARTITION.\\
+                    So sind $y_{n+1}$ und $y_{n+2}$ nicht in der selben Teilmenge, da
+                    $$y_{n+1} + y_{n+2} = 3X$$
+                    Hieraus folgt eine Lösung für SUBSET SUM, da sich die Zahlen aus $y_{1,...,n}$,
+                    die sich in der selben Teilmenge wie $y_{n+1}$ befinden, \\
+                    zu $2X - y_{n+1} = W$ aufsummieren. \\
+
+                    ``$\Rightarrow$'' \\
+                    Wenn es eine Teilmenge der Zahlen $x_{1,...,n}$ mit der Summe $W$ gibt, so gibt es auch eine Teilmenge der Zahlen $y_{1,...,n}$
+                    mit der Summen $W$.
+                    Fügt man die Zahl $y_{n+1} = 2X - W$ zu dieser Teilmenge hinzu, erhalten wir eine Menge, deren Summe $2X$ ist.
+                    Dies entspricht der Hälfte der Gesamtmenge.
+
+
+                \end{proof}
 
         \end{enumerate}
     \end{proof}
