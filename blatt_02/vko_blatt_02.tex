@@ -151,7 +151,7 @@
     \begin{proof}
         \hfill \\
         \begin{enumerate}
-            \item Eingabe SUBSET SUM: Positive ganze Zahlen $x_1, .... x_n$ , W = Zielgröße
+            \item Eingabe SUBSET SUM: Positive ganze Zahlen $x_1, \dotsc x_n$ , W = Zielgröße
             \item Sei X = $\sum_{i=1}^{n} a_i $
             \item Umformung in Eingabe für PARTITION: $n + 2$ Zahlen, deren Summe den Wert $4X$ ergibt.\\ 
             \begin{align*}
@@ -171,12 +171,12 @@
                     Gegeben: eine geeignete Aufteilung der Zahlen für PARTITION.\\
                     So sind $y_{n+1}$ und $y_{n+2}$ nicht in der selben Teilmenge, da
                     $$y_{n+1} + y_{n+2} = 3X$$
-                    Hieraus folgt eine Lösung für SUBSET SUM, da sich die Zahlen aus $y_{1,...,n}$,
+                    Hieraus folgt eine Lösung für SUBSET SUM, da sich die Zahlen aus $y_{1,\dotsc,n}$,
                     die sich in der selben Teilmenge wie $y_{n+1}$ befinden, \\
                     zu $2X - y_{n+1} = W$ aufsummieren. \\
 
                     ``$\Rightarrow$'' \\
-                    Wenn es eine Teilmenge der Zahlen $x_{1,...,n}$ mit der Summe $W$ gibt, so gibt es auch eine Teilmenge der Zahlen $y_{1,...,n}$
+                    Wenn es eine Teilmenge der Zahlen $x_{1,\dotsc,n}$ mit der Summe $W$ gibt, so gibt es auch eine Teilmenge der Zahlen $y_{1,\dotsc,n}$
                     mit der Summen $W$.
                     Fügt man die Zahl $y_{n+1} = 2X - W$ zu dieser Teilmenge hinzu, erhalten wir eine Menge, deren Summe $2X$ ist.
                     Dies entspricht der Hälfte der Gesamtmenge.
