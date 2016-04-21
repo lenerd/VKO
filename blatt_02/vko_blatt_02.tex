@@ -93,8 +93,49 @@
      Das Problem ist eine Umschreibung des Problems der bipartiten Graphen. Das maximale Matching muss hierbei mindestens so groß wie die erforderte Anzahl k der Prozesse erreichen. Ein polynomieller Algorithmus, um dieses Problem zu lösen ist durch Edmond/Karp gegeben.
 
     \item % d)
-        TODO
+        Der Spezialfall, in dem jede Ressource von höchstens zwei Prozessen
+        benötigt wird, ist $NP$-vollständig.
+        Dies kann nachgewiesen werden, indem gezeigt wird, dass das Problem zu
+        \textsc{Independent Set} äquivalent ist.
 
+        Man kann die Eingabe als Graphen modellieren.
+        Jeder Prozess ist ein Knoten und jede Ressource wird durch eine Kante
+        zwischen den zwei Knoten dargestellt, die diejenigen Prozesse
+        repräsentieren, die von dieser Ressource abhängig sind.
+        Ressourcen, die von weniger als zwei Prozess benötigt werden, sind
+        irrelevant und können daher ignoriert werden -- sie stehen in jedem
+        Fall zur Verfügung, falls benötigt.
+        Man sieht nun, dass die Entscheidung, ob eine passende \textsc{Resource
+        Reservation} mit $k$ Prozessen existiert, äquivalent zu der
+        Entscheidung, ob ein \textsc{Independent Set} mit $k$ Knoten in der
+        Graphdarstellung existiert, ist.
+        Die Probleme können also aufeinander reduziert werden.
+
+        Wir zeigen eine Reduktion von \textsc{Independent Set} auf diese
+        Version von \textsc{Resource Allocation}.
+        Gegeben eine Instanz $G = (V,E), k$ für \textsc{Independent Set}.
+        Wir setzen $P = V$ und $R = E$, $k$ bleibt gleich.
+        Die zwei Knoten $u,v$ in jeder Kante $e = \{u,v\}$ seien die Prozesse,
+        die diese Ressource benötigen.
+
+        Zu zeigen ist, dass $G,k$ genau dann eine Ja-Eingabe für
+        \textsc{Independent Set} ist, wenn $P,R,k$ eine Ja-Eingabe für
+        \textsc{Resource Allocation} ist.
+        \begin{itemize}
+            \item $\Rightarrow$: \\
+                Es gibt $\geq k$ Knoten in $V$, die paarweise keine gemeinsamen
+                Kanten in $E$ haben.
+                Nach Konstruktion gibt es in $\geq k$ Prozesse in $P$, so dass
+                keine Ressource in $R$ von mehr als einem Prozess benötigt
+                wird.
+            \item $\Leftarrow$: \\
+                Es gibt $\geq k$ Prozesse, so dass keine Ressource von mehr als
+                einem Prozess benötigt wird.
+                Damit gibt es auch $\geq k$ Knoten, die paarweise nicht durch
+                Kanten verbunden sind.
+        \end{itemize}
+        Das Problem ist also mindestens so schwer wie \textsc{Independent Set}
+        und damit $NP$-schwierig.
 
 \end{enumerate}
 
