@@ -142,7 +142,70 @@
 \item % 2.
 \begin{enumerate}
     \item % a)
-        TODO
+        \begin{proposition}
+            \textsc{Set Splitting} ist $NP$-vollständig.
+        \end{proposition}
+        \begin{proof}
+            \hfill \\
+            \begin{enumerate}
+                \item \textsc{Set Splitting} $\in NP$: \\
+                    Gegeben eine Partition $S_1,S_2$ von $S$, so kann effizient
+                    mit geeigneten Mengenoperationen überprüft werden, ob die
+                    gewünschte Eigenschaft erfüllt ist.
+                \item \textsc{Set Splitting} ist $NP$-schwierig: \\
+                    Wir zeigen durch eine Reduktion, dass 3-SAT $\leq_p$
+                    \textsc{Set Splitting} gilt.
+                    Sei eine Klauselmenge $\phi$ eine Eingabe für 3-SAT und $A$
+                    die Menge der Atome in $\phi$.
+                    Wir setzen $S = A \cup \{\bot\}$. $\bot$ ist das Bottom,
+                    dem stets der Wahrheitswert falsch zugewiesen wird. 
+                    Jede Klausel $K \in M$ wird mit einem $\bot$ erweitert und
+                    in $\mathcal{C}$ eingefügt. Weiterhin bildet jedes Atom $a$
+                    zusammen mit seinem negativen Literal $\lnot a$ eine Menge
+                    in $\mathcal{C}$.
+                    \begin{equation*}
+                        \mathcal{C} =
+                        \Big\{ K \cup \{\bot\}\ |\ K \in M \Big\}
+                        \cup
+                        \Big\{ \{a, \lnot a\}\ |\ a \in A \Big\}
+                    \end{equation*}
+                    Wir zeigen nun, dass $\phi$ genau dann erfüllbar ist, wenn
+                    es ein Set Splitting für $S, \mathcal{C}$ gibt.
+                    \begin{itemize}
+                        \item $\Rightarrow$: \\
+                            Sei $\phi$ erfüllbar und $T$ die Menge der wahren
+                            Literale in einer erfüllenden Belegung.
+                            Dann ist $(T, S \setminus T)$ ein Set Splitting von
+                            $S$, da
+                            \begin{itemize}
+                                \item
+                                    für jedes Atom $a$ ist genau ein Literal
+                                    $a$ oder $\lnot a$ mit wahr belegt
+                                \item
+                                    in jeder Klauselmenge ist mindestens ein
+                                    Literal wahr, $\bot$ ist nie wahr
+                            \end{itemize}
+                            Damit ist keine Menge $C \in \mathcal{C}$ komplett
+                            in $T$ oder $S \setminus T$ enthalten und dies ist
+                            ein Set Splitting.
+
+                        \item $\Leftarrow$: \\
+                            Sei $(S_1,S_2)$ ein Set Splitting und dabei sei
+                            o.\,B.\,d.\,A. $\bot \in S_2$.
+                            Es sind also für jede Atom das positive und das
+                            negative Literal in verschiedenen Mengen.
+                            Belegt man die Literale in $S_1$ mit wahr, ergibt
+                            sich also eine valide Belegung.
+                            Weiterhin ist mindestens ein Literal aus jeder
+                            Klausel in $S_1$ enthalten (denn $\bot \in S_2$).
+                            Damit erhält man auch eine erfüllende Belegung von
+                            $\phi$.
+                    \end{itemize}
+                    3-SAT ist auf \textsc{Set Splitting} reduzierbar.
+            \end{enumerate}
+            Aus i. und ii. folgt die Behauptung.
+        \end{proof}
+
     \item % b)
      NUMBER PARTITION INTO EQUAL PARTS (PARTITION) ist in NP, da es ein Spezialfall von SUBSET SUM ist.
     \begin{proposition}
