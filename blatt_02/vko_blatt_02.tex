@@ -72,25 +72,31 @@
 \begin{enumerate}[label=\bfseries \arabic*.]
 \item % 1.
 \begin{enumerate}
-    \item % a)
-    \begin{proposition}
-        \[ \text{SET PACKING} \leq_{p} \text{RESOURCE RESERVATION PROBLEM} \]
-    \end{proposition}
-    \begin{proof}
-        \hfill \\
-        \begin{enumerate}
-            \item Das \text{RESOURCE RESERVATION PROBLEM} liegt in NP. IDese Behauptung wird im Folgenden bewiesen.  
-            Man rate eine Ja-Eingabe und zeigt in polynomieller Zeit, dass es sich um eine gültige Lösung handelt, indem man $|Prozesse| = k$ prüft und sicherstellt, dsas die Ressourcenmengen der Prozesse miteinander disjunkt sind.
-            \item Das Problem Ressource Reservation Problem ist NP-vollständig, da es nur eine andere Formulierung des Set-Packing-Problems ist, welches nachgewiesenerweise NP-vollständig ist.
-        \end{enumerate}
-    \end{proof}
+    \item
+        Das \textsc{Resource Reservation Problem} ist nur eine andere
+        Formulierung von \textsc{Set Packing}.  Jeder Prozess kann von der
+        Menge der benötigten Ressourcen dargestellt werden.  Gibt es $k$ dieser
+        Mengen, die paarweise disjunkt sind, so können $k$ Prozesse
+        gleichzeitig aktiv sein.  Die Frage ist also, ob mindestens $k$ dieser
+        Mengen paarweise disjunkt sind -- die Definition von \textsc{Set
+        Packing}.  Da wir wissen, dass \textsc{Set Packing} $NP$-vollständig
+        ist, ist das \textsc{Resource Reservation Problem} es ebenfalls.
 
     \item % b)
-       Wenn k auf 2 gesetzt wird, ist das Problem in P, da man um es zu lösen nur jeweils 2 Mengen auf Disjunktivität vergleichen muss.
-
+        Ist $k = 2$, so wird das Problem auf die Frage reduziert, ob es zwei
+        disjunkte Mengen in den Ressourcenanforderungen gibt.
+        Dies ist offensichtlich in Polynomialzeit möglich, indem man jeweils
+        zwei Mengen auf Disjunktheit prüft.
 
     \item % c)
-     Das Problem ist eine Umschreibung des Problems der bipartiten Graphen. Das maximale Matching muss hierbei mindestens so groß wie die erforderte Anzahl k der Prozesse erreichen. Ein polynomieller Algorithmus, um dieses Problem zu lösen ist durch Edmond/Karp gegeben.
+        Es ist möglich den Spezialfall als bipartiten Graphen zu modellieren,
+        so dass die Ressourcen der beiden Typen, die beiden Knotenmengen bilden.
+        Die Prozesse ergeben die Kanten zwischen den Teilmengen.
+        Mittels des Algorithmus von Edmonds und Karp lässt sich in
+        Polynomialzeit ein maximales Matching auf diesem Graphen finden.
+        Die Größe dieses Matchings ist die maximale Anzahl an Prozessen, die
+        gleichzeitig laufen können. Ist diese $\geq k$, so handelt es sich um
+        eine Ja-Eingabe.
 
     \item % d)
         Der Spezialfall, in dem jede Ressource von höchstens zwei Prozessen
