@@ -1,0 +1,128 @@
+\documentclass[a4paper]{scrartcl}
+
+% font/encoding packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[ngerman]{babel}
+\usepackage[ngerman=ngerman-x-latest]{hyphsubst}
+
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{mathtools}
+\usepackage{array}
+\usepackage{stmaryrd}
+\usepackage{marvosym}
+\usepackage{subcaption}
+\allowdisplaybreaks{}
+\usepackage[output-decimal-marker={,}]{siunitx}
+\usepackage[shortlabels]{enumitem}
+\usepackage[section]{placeins}
+\usepackage{float}
+\usepackage{units}
+\usepackage{listings}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage{minted}
+
+\usepackage{xcolor}
+\definecolor{light-gray}{HTML}{cccccc}
+
+
+\newtheorem*{proposition}{Behauptung}
+\newtheorem*{definition}{Definition}
+\newcommand{\gdw}{\ \Leftrightarrow\ }
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Oh}{\mathcal{O}}
+\DeclareMathOperator{\im}{im}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\lstset{%
+    frame=single,
+    numbers=left,
+    keepspaces,
+    language=R,
+    title=Listing: \lstname,
+}
+
+\def \blattnr {3}
+
+\lhead{VKO -- Blatt {\blattnr}}
+\rhead{Alina Bombeck, Lennart Braun, Carolin Konietzny, Tronje Krabbe}
+\cfoot{\thepage}
+
+
+\title{Vertiefung Kombinatorische Optimierung}
+\subtitle{Blatt {\blattnr} Hausaufgaben}
+\author{%
+    Alina Bombeck, 6535392 (Gruppe 1) \and
+    Lennart Braun, 6523742 (Gruppe 1) \and
+    Carolin Konietzny, 6523939 (Gruppe 1) \and
+    Tronje Krabbe, 6435002 (Gruppe 3)
+}
+\date{zum 25. April 2016}
+\usepackage{pdfpages} 
+
+\begin{document}
+\maketitle
+
+
+\begin{enumerate}[label=\bfseries \arabic*.]
+\item % 1.
+\begin{enumerate}
+    \item % a)
+        Folgender Algorithmus löst \textit{c}-HITTING SET mit einer Laufzeit von \\
+        $O(f(k) \cdot p(n, m))$:
+        \begin{minted}[escapeinside=||, mathescape=true]{python}
+        def c_hitting_set(A, B, k):
+            if B is |$\varnothing$|: return True
+            if k == 0: return False
+            if |$\varnothing \in$| B: return False
+            pick |$B_i \in B$|
+            for |$a_i \in B_i$|:
+                if c_hitting_set(|$A\backslash\{a_i\}, \{B_j \in B \text{\textbar} a_i \notin B_j \}, k-1$|):
+                    return True
+            return False
+        \end{minted}
+
+    \item % b)
+
+    \item % c)
+        Zunächst zeigen wir, dass \textit{c}-HITTING SET in NP liegt.
+        Wir nehmen als Zertifikat ein Hitting Set, also $k$ Elemente aus $A$.
+        Das Zertifikat wird akzeptiert, wenn es Länge $k$ hat und wenigstens ein
+        Element aus jedem $B_i$ enthält. Um dies zu prüfen, nehmen wir jedes der
+        $m$ Sets und überprüfen für jedes der $n$ Elemente, ob es in den $k$ Elementen
+        der Eingabe liegt. Dies hat eine Laufzeit von $O(c \cdot k \cdot m)$, oder,
+        da $c \leq n$ und $k \leq n$, $O(n \cdot m^2)$. Dies ist polynomiell.
+        \\
+        \\
+        Nun reduzieren wir VERTEX COVER auf \textit{c}-HITTING SET.
+        Mit einem gegebenen ungerichteten Graphen $G$, mit $n$ Knoten und $m$ Kanten
+        und einem Parameter $k$ für VERTEX COVER, definieren wir $A = V(G)$, $B_i$
+        als die Menge der beiden Endknoten von Kante $e_i$, und $k$ bleibt gleich.
+        Dann hat $G$ ein Vertex Cover der Größe $k$ genau dann wenn $A$ ein
+        Hitting Set der Größe $k$ der Mengen $B$. Dies folgt daraus, dass
+        eine Knotenmenge in $G$ genau dann ein Vertex Cover ist, wenn
+        es jede der Kanten "hittet", also ein Element mit ihnen gemeinsam hat.
+        \\
+        \\
+        Da wir lediglich die Kanten in $G$ anders anordnen müssen, benötigen
+        wir nur $O(n + m)$ Laufzeit, können die oben beschriebene Umstellung also
+        in höchstens polynomieller Zeit schaffen. Da \textit{c}-HITTING SET
+        in NP liegt, und sich ein als NP-vollständig bekanntes Problem auf
+        \textit{c}-HITTING SET reduzieren lässt, ist es ebenfalls NP-vollständig.
+\end{enumerate}
+
+\item % 2.
+\begin{enumerate}
+    \item todo
+\end{enumerate}
+\end{enumerate}
+
+
+\end{document}
+
