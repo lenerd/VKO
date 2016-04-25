@@ -118,8 +118,56 @@
 \end{enumerate}
 
 \item % 2.
+    Es sei $G = (V, E)$, mit einer Knotenüberdeckungsmenge $S$.
+
 \begin{enumerate}
-    \item todo
+    \item % a)
+        Jeder Knoten $v \in V$ mit einem Grad $> k$ muss in der
+        Knotenüberdeckung $S$ enthalten sein, denn, wäre das nicht der Fall,
+        alle (also mehr als $k$) Nachbarknoten von $v$ in $S$ enthalten sein müssen.
+        Aber: $|S| < k$.
+
+        Daraus folgt: alle Knoten $v \in D$ müssen auch in $S$ enthalten sein.
+        Und: Ist nun $|D| > k$, kann es keine Knotenüberdeckung mit einer Länge
+        kleiner als $k$ geben.
+
+    \item % b)
+        In Schritt 1 werden alle wegen ihres hohen Grades offensichtlich in $S$
+        enthaltenen Knoten in $D$ aufgenommen. $k' = k - |D|$ bezeichnet nun die
+        Anzahl der Knoten, die noch in die Knotenüberdeckung aufgenommen werden
+        können. Da alle in $D$ enthaltenen Knoten in $S$ enthalten sind, können
+        sie und alle ausgrenzenden Knoten aus $G$ gelöscht werden.
+        Also: hat $G'$ eine Knotenüberdeckung mit höchstens $k'$ Knoten,
+        so hat $G$ eine Knotenüberdeckung mit höchstens $k$ Knoten, da alle entfernten
+        Kanten durch die $|D|$ Knoten berührt werden, und $|D| + k' = k$.
+
+    \item % c)
+        Aus Präsenzaufgabe 2b ist bekannt: ist $G = (V, E)$ ein Graph mit einer
+        Knotenüberdeckung $S$, $|S| \leq m$ und dem Grad eines jeden Knoten
+        $\leq d$, so gilt: $|V| \leq m \cdot (d+1)$.
+        \\
+        Für unseren Graphen $G'$ gilt: der höchste Grad ist $d = k$, da in Schritt 1
+        alle überschüssigen gelöscht wurden. Und: die Knotenüberdeckung in $G'$
+        hat höchstens $m = k'$ Knoten.
+        \qed
+
+    \item % d)
+        Schritt 1:
+        \begin{itemize}
+            \item Ermitteln der Knotengrade: $O(|G|)$.
+            \item Überprüfen: konstant.
+            \item Löschen: maximal $O(|G|)$ (alle Knoten und Kanten in $D$)
+        \end{itemize}
+
+        Schritt 2:
+        Wir müssen über alle Knoten iterieren, also noch einmal $O(|G|)$.
+
+        Schritt 3:
+        Aus dem Algorithmus in 10.1 folgt, dass dessen Laufzeit in $O(2^k n)$ liegt,
+        wobei $n$ die Anzahl der Knoten ist. Zu zeigen ist, dass $n \leq k^2$.
+        Da wir uns in Schritt 3 befinden, hat $G'$ weniger als $k'(k+1)$ Knoten.
+        (Siehe die Bedingung am Anfang von Schritt 2).
+
 \end{enumerate}
 \end{enumerate}
 
