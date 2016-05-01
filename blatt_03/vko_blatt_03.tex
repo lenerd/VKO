@@ -102,6 +102,28 @@
         werden muss.
 
     \item % c)
+        Eine Instanz für $c$-\textsc{Hitting Set} ist immer auch eine Instanz
+        für das nicht eingeschränkte \textsc{Hitting Set}.
+        Wir wissen, dass letzteres in $NP$ liegt.
+        Damit gibt es auch einen polynomiellen Verifikationsalgorithmus für
+        $c$-\textsc{Hitting Set} und dies liegt ebenfalls in $NP$.
+
+        Nun zeigen wir, dass $2-$\textsc{Hitting Set} $NP$-vollständig ist.  Da
+        Problem ist nicht anderes als \textsc{Vertex Cover}. Die Menge $A$ sind
+        die Knoten, die Teilmengen $B_i$ die Kanten eines Graphen.
+        Damit ist \textsc{Vertex Cover} $\leq_p$ $2$-\textsc{Hitting Set}.
+        Für den Fall $c = 2$ handelt es sich also um ein $NP$-vollständiges
+        Problem.
+
+        Haben wir eine Instanz für $n$-\textsc{Hitting Set} so ist dies auch
+        eine Instanz für $n+1$-\textsc{Hitting Set}, denn $|B_i| \leq n \leq
+        n+1$, und können mit einem Algorithmus für letzteres Problem
+        entschieden werden.
+        Damit ist $n$-\textsc{Hitting Set} $\leq_p$ $n+1$-\textsc{Hitting Set} und
+        $c$-\textsc{Hitting Set} ist für alle $c \geq 2$ $NP$-vollständig.
+
+        TODO: Variante auswählen.
+
         Zunächst zeigen wir, dass \textit{c}-HITTING SET in NP liegt.
         Wir nehmen als Zertifikat ein Hitting Set, also $k$ Elemente aus $A$.
         Das Zertifikat wird akzeptiert, wenn es Länge $k$ hat und wenigstens ein
