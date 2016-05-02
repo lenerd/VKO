@@ -1,19 +1,42 @@
 \begin{tikzpicture}[%
     scale=2,
     vertex/.style = {draw,circle,},
-    level 1/.style={sibling distance=3.5cm},
+    level 1/.style={sibling distance=5cm},
+    level 2/.style={sibling distance=2.0cm},
+    level 3/.style={sibling distance=1cm},
+    level 4/.style={sibling distance=0.5cm},
 ]
-\node (root) [vertex]
+\node (root) [vertex] {}
     child {
         node[vertex] {}
         child {
             node[vertex] {}
             child {
                 node[vertex] {}
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {9}
+                    edge from parent node[left] {$x_2 = 1$} 
+                }
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {8}
+                    edge from parent node[right] {$0$} 
+                }
                 edge from parent node[left] {$x_1 = 1$} 
             }
             child {
                 node[vertex] {}
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {7}
+                    edge from parent node[left] {$1$} 
+                }
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {8}
+                    edge from parent node[right] {$0$} 
+                }
                 edge from parent node[right] {$x_1 = 0$} 
             }
             edge from parent node[left] {$x_3 = 1$} 
@@ -22,10 +45,30 @@
             node[vertex] {}
             child {
                 node[vertex] {}
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {9}
+                    edge from parent node[left] {$1$} 
+                }
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {7}
+                    edge from parent node[right] {$0$} 
+                }
                 edge from parent node[left] {$x_1 = 1$} 
             }
             child {
                 node[vertex] {}
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {6}
+                    edge from parent node[left] {$1$} 
+                }
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {6}
+                    edge from parent node[right] {$0$} 
+                }
                 edge from parent node[right] {$x_1 = 0$} 
             }
             edge from parent node[right] {$x_3 = 0$} 
@@ -38,9 +81,31 @@
             node[vertex] {}
             child {
                 node[vertex] {}
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {9}
+                    edge from parent node[left] {$1$} 
+                }
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {8}
+                    edge from parent node[right] {$0$} 
+                }
+                edge from parent node[left] {$x_1 = 1$} 
             }
             child {
                 node[vertex] {}
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {6}
+                    edge from parent node[left] {$1$} 
+                }
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {7}
+                    edge from parent node[right] {$0$} 
+                }
+                edge from parent node[right] {$x_1 = 0$} 
             }
             edge from parent node[left] {$x_3 = 1$} 
         }
@@ -48,9 +113,31 @@
             node[vertex] {}
             child {
                 node[vertex] {}
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {9}
+                    edge from parent node[left] {$1$} 
+                }
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {8}
+                    edge from parent node[right] {$0$} 
+                }
+                edge from parent node[left] {$x_1 = 1$} 
             }
             child {
                 node[vertex] {}
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {6}
+                    edge from parent node[left] {$1$} 
+                }
+                child {
+                    node[vertex] {}
+                    node [yshift=-1cm] {7}
+                    edge from parent node[right] {$0$} 
+                }
+                edge from parent node[right] {$x_1 = 0$} 
             }
             edge from parent node[right] {$x_3 = 0$} 
         }

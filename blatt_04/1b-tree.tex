@@ -1,0 +1,67 @@
+
+\begin{tikzpicture}[%
+    scale=2,
+    vertex/.style = {draw,circle,},
+    level 1/.style={sibling distance=5cm},
+    level 2/.style={sibling distance=2.0cm},
+    level 3/.style={sibling distance=1cm},
+    level 4/.style={sibling distance=0.5cm},
+]
+\node (root) [vertex] {}
+    child {
+        node[vertex] {}
+        child {
+            node[vertex] {}
+            child {
+                node[vertex] {}
+                child {
+                    node[vertex] {}
+                    node[yshift=-1cm] {9}
+                    edge from parent node[left] {$x_2 = 1$} 
+                }
+                child [edge from parent/.style={draw=none}] {}
+                node[below right]
+                {$\{\overline{x_1} \lor \overline{x_3}\}$}
+                edge from parent node[left] {$x_1 = 1$} 
+            }
+            child {
+                node[vertex] {}
+                node[below right]
+                {$\{x_1\}$}
+                edge from parent node[right] {$x_1 = 0$} 
+            }
+            edge from parent node[left] {$x_3 = 1$} 
+        }
+        child {
+            node[vertex] {}
+            node[yshift=-0.5cm] {$\{x_3\}$}
+            edge from parent node[right] {$x_3 = 0$} 
+        }
+        edge from parent node[left] {$x_4 = 1$} 
+    }
+    child {
+        node[vertex] {}
+        child {
+            node[vertex] {}
+            child {
+                node[vertex] {}
+                node[yshift=-0.5cm] {$\{\overline{x_1} \lor \overline{x_3}\}$}
+                edge from parent node[left] {$x_1 = 1$} 
+            }
+            child {
+                node[vertex] {}
+                node[yshift=-0.5cm] {$\{x_1\}$}
+                edge from parent node[right] {$x_1 = 0$} 
+            }
+            edge from parent node[left] {$x_3 = 1$} 
+        }
+        child {
+            node[vertex] {}
+            node[yshift=-0.5cm] {$\{x_3\}$}
+            edge from parent node[right] {$x_3 = 0$} 
+        }
+        edge from parent node[right] {$x_4 = 0$} 
+    }
+    ;
+
+\end{tikzpicture}

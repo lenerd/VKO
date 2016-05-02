@@ -25,6 +25,7 @@
 \usepackage{tikz}
 \usepackage{tikz-qtree}
 \usetikzlibrary{arrows,automata}
+\usepackage{pdflscape}
 \usepackage{xcolor}
 \definecolor{light-gray}{HTML}{cccccc}
 
@@ -73,12 +74,21 @@
 \item % 1.
 \begin{enumerate}
     \item % a)
-        \begin{figure}
-            \centering
-            \input{1a-tree}
-            \caption{TODO}
-        \end{figure}
+        \begin{landscape}
+            \begin{figure}
+                \centering
+                \input{1a-tree}
+                \caption{Backtrack-Baum $T_{\mathcal{F}(x)}$}
+            \end{figure}
+        \end{landscape}
     \item % b)
+        \begin{landscape}
+            \begin{figure}
+                \centering
+                \input{1b-tree}
+                \caption{Branch-and-Bound-Baum}
+            \end{figure}
+        \end{landscape}
 \end{enumerate}
 
 \item % 2.
