@@ -1,0 +1,40 @@
+\begin{tikzpicture}[every tree node/.style={align=center,anchor=north,rectangle,draw}, level distance=70pt,scale=0.8]
+\Tree [. $F(x)$
+        % 1st edge to the left
+        \edge node[auto=right] {$e_{34}$};
+        [.$S(e_{34})$\\23 ]
+        % 1st edge to the right
+        \edge node[auto=left] {$\bar{e}_{34}$};
+        [.$S(\bar{e}_{34})$
+            % left
+            \edge node[auto=right] {$e_{45}$};
+            [.$S(\bar{e}_{34},e_{45})$\\20 ]
+            % right
+            \edge node[auto=left] {$\bar{e}_{45}$};
+            [.$S(\bar{e}_{34},\bar{e}_{45})$
+                % left
+                \edge node[auto=right] {$e_{13}$};
+                [.$S(e_{13},\bar{e}_{34},\bar{e}_{45})$\\19 ]
+                % right
+                \edge node[auto=left] {$\bar{e}_{13}$};
+                [.$S(\bar{e}_{13},\bar{e}_{34},\bar{e}_{45})$
+                    % left
+                    \edge node[auto=right] {$e_{25}$};
+                    [.{$S(\bar{e}_{13},e_{25},\bar{e}_{34},\bar{e}_{45})$\\
+                        Kein Ham.-Kreis möglich!} ]
+                    % right
+                    \edge node[auto=left] {$\bar{e}_{25}$};
+                    [.$S(\bar{e}_{13},\bar{e}_{25},\bar{e}_{34},\bar{e}_{45})$
+                        % left
+                        \edge node[auto=right] {$e_{12}$};
+                        [.{$S(e_{12},\bar{e}_{13},\bar{e}_{25},\bar{e}_{34},\bar{e}_{45})$
+                        \\ Kein Ham.-Kreis möglich!} ]
+                        % right
+                        \edge node[auto=left] {$\bar{e}_{12}$};
+                        [.$S(\bar{e}_{12},\bar{e}_{13},\bar{e}_{25},\bar{e}_{34},\bar{e}_{45})$\\17 ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+\end{tikzpicture}
