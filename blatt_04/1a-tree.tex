@@ -1,0 +1,61 @@
+\begin{tikzpicture}[%
+    scale=2,
+    vertex/.style = {draw,circle,},
+    level 1/.style={sibling distance=3.5cm},
+]
+\node (root) [vertex]
+    child {
+        node[vertex] {}
+        child {
+            node[vertex] {}
+            child {
+                node[vertex] {}
+                edge from parent node[left] {$x_1 = 1$} 
+            }
+            child {
+                node[vertex] {}
+                edge from parent node[right] {$x_1 = 0$} 
+            }
+            edge from parent node[left] {$x_3 = 1$} 
+        }
+        child {
+            node[vertex] {}
+            child {
+                node[vertex] {}
+                edge from parent node[left] {$x_1 = 1$} 
+            }
+            child {
+                node[vertex] {}
+                edge from parent node[right] {$x_1 = 0$} 
+            }
+            edge from parent node[right] {$x_3 = 0$} 
+        }
+        edge from parent node[left] {$x_4 = 1$} 
+    }
+    child {
+        node[vertex] {}
+        child {
+            node[vertex] {}
+            child {
+                node[vertex] {}
+            }
+            child {
+                node[vertex] {}
+            }
+            edge from parent node[left] {$x_3 = 1$} 
+        }
+        child {
+            node[vertex] {}
+            child {
+                node[vertex] {}
+            }
+            child {
+                node[vertex] {}
+            }
+            edge from parent node[right] {$x_3 = 0$} 
+        }
+        edge from parent node[right] {$x_4 = 0$} 
+    }
+    ;
+
+\end{tikzpicture}
