@@ -24,6 +24,7 @@
 \pgfplotsset{compat=1.12}
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata}
+\usepackage{pdflscape}
 
 \usepackage{xcolor}
 \definecolor{light-gray}{HTML}{cccccc}
@@ -73,11 +74,13 @@
 \item % 1.
 \begin{enumerate}
     \item % a)
-        \begin{figure}
-            \centering
-            \input{1a-tree}
-            \caption{TODO}
-        \end{figure}
+        \begin{landscape}
+            \begin{figure}
+                \centering
+                \input{1a-tree}
+                \caption{Backtrack-Baum $T_{\mathcal{F}(x)}$}
+            \end{figure}
+        \end{landscape}
     \item % b)
 \end{enumerate}
 
