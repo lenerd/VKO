@@ -28,6 +28,8 @@
 \usepackage{pdflscape}
 \usepackage{xcolor}
 \definecolor{light-gray}{HTML}{cccccc}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 
 
 \newtheorem*{proposition}{Behauptung}
@@ -106,7 +108,42 @@
         \end{equation*}
         
     \item % b)
-        TODO
+        \begin{proposition}
+            In jedem triangulierten Kreisgraphen gibt es mindestens einen
+            Knoten der Ordnung $2$, der zusammen mit seinen Nachbarn ein
+            Dreieck bildet.
+        \end{proposition}
+        \begin{proof}
+            Das ist trivial.
+        \end{proof}
+        \begin{proposition}
+            Ein triangulierter Kreisgraph mit $n$ Knoten wird in $n-2$ Dreiecke
+            aufgeteilt.
+        \end{proposition}
+        \begin{proof}
+            Der Beweis ist dem Leser zur Übung überlassen.
+        \end{proof}
+        \begin{algorithm}
+            \begin{algorithmic}[1]
+                \Procedure{Foobar}{$G = V, E$}
+                \If {$G$ ist ein Kreis $u,v,w$}
+                    \State \Return $\{\{u,v,w\}\}$
+                \EndIf
+                \State Wähle einen Knoten $v$ mit $deg(v) = 2$
+                \State Suche die Nachbarn $u,w$ von $v$.
+                \State \Return $\{\{u,v,w\}\} \cup \Call{Foobar}{G \setminus \{v\}}$
+                \EndProcedure
+            \end{algorithmic}
+        \end{algorithm}
+        Obiger Algorithmus berechnet die Teilmengen $V_t$ der Baumzerlegung in
+        $\Oh(n \cdot |G|)$ Zeit (lineare Anzahl an Rekursionsschritten und
+        feste Anzahl an Iterationen über den Graphen).
+        Um den Baumgraphen mit zu erstellen müssen noch die entsprechenden
+        $V_t$ als Knoten interpretiert und durch Kanten verbunden werden, was
+        effizient möglich ist.
+
+
+
 \end{enumerate}
 
 \item % 2.
