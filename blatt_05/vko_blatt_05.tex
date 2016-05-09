@@ -110,11 +110,60 @@
 \end{enumerate}
 
 \item % 2.
+    Im Folgenden bezeichnen wir die Distanzfunktion mit $\hat{d}$.
 \begin{enumerate}
     \item % a)
-        TODO
+        \begin{proposition}
+            Der Aufruf $\textsc{Explore}(\Phi, d)$ gibt genau dann „yes“
+            zurück, wenn eine erfüllende Belegung $\Phi'$ mit
+            $\hat{d}(\Phi, \Phi') < d$ existiert.
+
+            $\textsc{Explore}(\Phi, d)$ benötigt $\Oh(n^2 \cdot 3^d)$ Zeit.
+        \end{proposition}
+        \begin{proof}
+            \leavevmode
+            \begin{itemize}
+                \item $\Rightarrow$: \\
+                    Der Algorithmus hat „yes“ ausgegeben.  Dann gibt es eine
+                    erfüllende Belegung $\Phi'$ und eine Folge von maximal $d$
+                    Änderungen von Belegungen jeweils eines Atoms, die $\Phi$
+                    in ein $\Phi'$ überführen. Also ist $\hat{d}(\Phi, \Phi')
+                    \leq d$.
+                \item $\Leftarrow$: \\
+                    Sei $\hat{d}(\Phi, \Phi') \leq d$, dann gibt es eine Folge
+                    von maximal $d$ Änderungen an der Belegung jeweils eines
+                    Atoms, die $\Phi$ in $\Phi'$ überführen.
+                    Eine solche Folge wird während der rekursiven Ausführung
+                    von \textsc{Explore} erreicht.
+                    Also gibt der Algorithmus „yes“ aus.
+            \end{itemize}
+
+            Die Rekursionstiefe beträgt offensichtlich $d$, der
+            Verzweigungsgrad beträgt $3$.
+            Damit ist ein Faktor von $3^d$ in der Laufzeit enthalten.
+            In jedem Rekursionsschritt müssen eine von $\Phi$ nicht erfüllt
+            Klausel gewählt und die Belegungen $\Phi_i$, $i \in \{1,2,3\}$
+            erstellt werden.
+            Es gibt maximal $\binom{n}{3} \cdot 2^3 \in \Oh(n^2)$ Klauseln, die
+            überprüft werden müssen.
+            Daher läuft $\textsc{Explore}(\Phi, d)$ in $\Oh(n^2 \cdot 3^d)$.
+        \end{proof}
+
     \item % b)
-        TODO
+        Seien $\Phi_1$ und $\Phi_2$ Belegunden, die allen Atomen den
+        Wahrheitswert „wahr“ bzw. „falsch“ zuweist.
+        Sei $\Phi'$ eine erfüllende Belegung, dann gilt $\hat{d}(\Phi_1, \Phi')
+        \leq \frac{n}{2}$ oder $\hat{d}(\Phi_2, \Phi') \leq \frac{n}{2}$, denn
+        es können nicht gleichzeitig mehr als die Hälfte der Atome den
+        Wahrheitswert „wahr“ und „falsch“ zugewiesen haben.
+
+        Man führt nun nacheinander
+        $\textsc{Explore}(\Phi_1, \lfloor \frac{n}{2} \rfloor)$ und
+        $\textsc{Explore}(\Phi_2, \lfloor \frac{n}{2} \rfloor)$ aus und gibt
+        „yes“ aus, sobald eine der beiden Aufrufe „yes“ zurückgibt.
+        Die Laufzeit beträgt also
+        $\Oh \left(2 \cdot (n^2 \cdot 3^{\frac{n}{2}}) \right) = \Oh \left( n^2 \cdot {(\sqrt{3})}^n \right)$.
+
 \end{enumerate}
 
 \end{enumerate}
