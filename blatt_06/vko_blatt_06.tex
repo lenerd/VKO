@@ -85,7 +85,13 @@
         mit $S= \{5\}$, aber der Algorithmus findet $T = 1$ mit $S = \{1\}$.
         $\square$
     \item % b)
-        TODO
+        Wir ergänzen den Algorithmus aus 1a) um einen Sortieralgorithmus
+        mit Laufzeit $O(n \log n)$, z.B. Merge-Sort oder Heap-Sort, und
+        sortieren damit $S$ nach absteigender Elementgröße (d.h. das größte
+        Element ist $a_1$).
+        Danach wenden wir einfach wieder den Algorithmus aus 1a) an, und erhalten
+        eine Laufzeit von $O(n \log n + n)$, was in $O(n \log n)$ liegt.
+        $\square$
 
 \end{enumerate}
 
