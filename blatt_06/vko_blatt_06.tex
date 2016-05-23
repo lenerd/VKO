@@ -78,10 +78,10 @@
     \item % a)
         Wir wollen nach Abschluss des Algorithmus ein möglichst großes $T$ erhalten.
         Wenn $T^*$ das Optimum ist, dann findet ein 2-Approximationsalgorithmus
-        ein $T$ mit $2T \leq T^*$.
+        ein $T$ mit $2T \geq T^*$.
         Wir geben ein Gegenbeispiel, um zu zeigen, dass der gegebene Algorithmus
         \textit{kein} 2-Approximationsalgorithmus ist:\\
-        Sei $B = 5$ und $S = \{1, 5, 5\}$. Offensichtlich ist $T^* = 5$
+        Sei $B = 5$ und $A = \{1, 5, 5\}$. Offensichtlich ist $T^* = 5$
         mit $S= \{5\}$, aber der Algorithmus findet $T = 1$ mit $S = \{1\}$.
         $\square$
     \item % b)
@@ -91,17 +91,55 @@
         Element ist $a_1$).
         Danach wenden wir einfach wieder den Algorithmus aus 1a) an, und erhalten
         eine Laufzeit von $O(n \log n + n)$, was in $O(n \log n)$ liegt.
-        $\square$
+        \\
+        \begin{proposition}
+        Unser Algorithmus ist ein 2-Approximationsalgorithmus.
+        \end{proposition}
+        \begin{proof}
+            Unser Algorithmus fügt automatisch das größte Element kleiner $B$ in $S$ ein.
+            Existiert ein solches Element in $S$, das auch größer als $\frac{1}{2}B$
+            ist, so gilt schon $2T \geq T^*$, denn $T^* \leq B$ gilt immer.
+            Gibt es kein Element $\geq \frac{1}{2}B$ und $<B$, so fügt unser Algorithmus
+            zwangsweise genug Elemente hinzu, bis entweder $T \geq \frac{1}{2}B$, oder alle
+            validen Elemente verbraucht sind. Im ersten Fall ist die Annahme wieder offensichtlich erfüllt.
+            Im zweiten Fall gilt offensichtlich:
+            \begin{align*}
+                T = T^* = \sum_{i=0}^{n}a_i | a_i \in A \wedge a_i < B
+            \end{align*}
+            $\square$
+        \end{proof}
 
 \end{enumerate}
 
 \item % 2.
-\begin{enumerate}
-    \item % a)
-        TODO
-    \item % b)
-        TODO
-\end{enumerate}
+    Zu zeigen: $\frac{4}{3}$ ist der bestmögliche, konstante Gütegarantiefaktor.\\
+    Greedy-Balance mit LIF-Regel teilt die in dem Beispiel auf Seite 32 beschriebenen Jobs so
+    auf die Maschinen auf, dass alle die gleiche Last haben, mit der Ausnahme von einer Maschine,
+    die den dritten Job mit Laufzeit $m$ erhält.\\
+    Verteilt man zuerst die ersten $2m$ Jobs, hat jede Maschine eine Last von $m + (2m-1) = 3m-1$, wobei der Job
+    der Laufzeit $m$ übrig bleibt; dieser wird dann einer beliebigen Maschine zugeteilt.
+    So ergibt sich eine Produktionsspanne $L=4m-1$, während die optimale Produktionsspanne
+    $L^*=3m$ beträgt.
+    \\
+    Diese ergibt sich so: die erste Maschine bekommt die drei Jobs der Länge $m$; alle weiteren Maschinen
+    erhalten nur 2 Jobs, nach folgendem Prinzip: jede Maschine, die noch nicht zwei Jobs hat, bekommt
+    sowohl den längsten als auch den kürzesten verbleibenden Job.\\
+    \newpage
+    Veranschauligt:\\
+    Maschine ``1'' hat drei Jobs mit der Laufzeit $m$.\\
+    Maschine ``2'' hat zwei Jobs mit den Laufzeiten $m+1$ und $2m-1$.\\
+    Maschine ``3'' wie Maschine 2.\\
+    Maschine ``4'' hat zwei Jobs mit den Laufzeiten $m+2$ und $2m-2$.\\
+    usw. So ergibt sich für jede Maschine eine Laufzeit von $L^*=3m$.
+    \\ \\
+    $L > \frac{4}{3}L^*$ ($L$ ist die vom Algorithmus gelieferte Produktionsspanne, und $L^*$ ist die
+    optimale Produktionsspanne).\\
+    Außerdem:\\
+    $4m-1 \leq \frac{4}{3} 3m = 4m$ und\\
+    $4m-1 \leq 4m$.
 
+    Gäbe es einen besseren konstanten Gütegarantiefaktor $x$, müsste er $4m \cdot x = 4m-1$ erfüllen.
+    Daraus würde sich ergeben:
+    $x = \frac{m-1}{m}$, was nicht konstant ist. $\square$
 \end{enumerate}
 \end{document}
