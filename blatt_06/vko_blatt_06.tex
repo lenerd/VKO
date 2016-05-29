@@ -95,7 +95,7 @@
         eine Laufzeit von $\Oh(n \log n + n)$, was in $\Oh(n \log n)$ liegt.
         \\
         \begin{proposition}
-        Unser Algorithmus ist ein 2-Approximationsalgorithmus.
+            Unser Algorithmus ist ein \approxalg{2}.
         \end{proposition}
         %\begin{proof}
         %    Unser Algorithmus fügt automatisch das größte Element kleiner $B$ in $S$ ein.
@@ -149,7 +149,8 @@
 \end{enumerate}
 
 \item % 2.
-    Zu zeigen: $\frac{4}{3}$ ist der bestmögliche, konstante Gütegarantiefaktor.\\
+    Zu zeigen: $\frac{4}{3}$ ist der bestmögliche, konstante Gütegarantiefaktor.
+
     Greedy-Balance mit LIF-Regel teilt die in dem Beispiel auf Seite 32 beschriebenen Jobs so
     auf die Maschinen auf, dass alle die gleiche Last haben, mit der Ausnahme von einer Maschine,
     die den dritten Job mit Laufzeit $m$ erhält.\\
@@ -157,26 +158,29 @@
     der Laufzeit $m$ übrig bleibt; dieser wird dann einer beliebigen Maschine zugeteilt.
     So ergibt sich eine Produktionsspanne $L=4m-1$, während die optimale Produktionsspanne
     $L^*=3m$ beträgt.
-    \\
-    Diese ergibt sich so: die erste Maschine bekommt die drei Jobs der Länge $m$; alle weiteren Maschinen
+
+    Diese ergibt sich so: Die erste Maschine bekommt die drei Jobs der Länge $m$; alle weiteren Maschinen
     erhalten nur 2 Jobs, nach folgendem Prinzip: jede Maschine, die noch nicht zwei Jobs hat, bekommt
-    sowohl den längsten als auch den kürzesten verbleibenden Job.\\
-    \newpage
-    Veranschauligt:\\
-    Maschine ``1'' hat drei Jobs mit der Laufzeit $m$.\\
-    Maschine ``2'' hat zwei Jobs mit den Laufzeiten $m+1$ und $2m-1$.\\
-    Maschine ``3'' wie Maschine 2.\\
-    Maschine ``4'' hat zwei Jobs mit den Laufzeiten $m+2$ und $2m-2$.\\
-    usw. So ergibt sich für jede Maschine eine Laufzeit von $L^*=3m$.
-    \\ \\
-    $L > \frac{4}{3}L^*$ ($L$ ist die vom Algorithmus gelieferte Produktionsspanne, und $L^*$ ist die
-    optimale Produktionsspanne).\\
-    Außerdem:\\
-    $4m-1 \leq \frac{4}{3} 3m = 4m$ und\\
-    $4m-1 \leq 4m$.
+    sowohl den längsten als auch den kürzesten verbleibenden Job.
+
+    Veranschaulicht:
+    \begin{itemize}
+        \item Maschine ``1'' hat drei Jobs mit der Laufzeit $m$.
+        \item Maschine ``2'' hat zwei Jobs mit den Laufzeiten $m+1$ und $2m-1$.
+        \item Maschine ``3'' wie Maschine 2.
+        \item Maschine ``4'' hat zwei Jobs mit den Laufzeiten $m+2$ und $2m-2$.
+        \item usw.
+    \end{itemize}
+    So ergibt sich für jede Maschine eine Laufzeit von $L^*=3m$.
+
+    Es gilt
+    \begin{equation*}
+        L = 4m - 1 < 4m = \frac{4}{3} \cdot 3m = \frac{4}{3} L^\ast
+    \end{equation*}
 
     Gäbe es einen besseren konstanten Gütegarantiefaktor $x$, müsste er $4m \cdot x = 4m-1$ erfüllen.
     Daraus würde sich ergeben:
-    $x = \frac{m-1}{m}$, was nicht konstant ist. $\square$
+    $x = \frac{m-1}{m}$, was nicht konstant ist.
+    \qed
 \end{enumerate}
 \end{document}
