@@ -31,6 +31,7 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 
+\newcommand{\approxalg}[1]{$#1$-Ap\-pro\-xi\-ma\-ti\-ons\-al\-go\-rith\-mus}
 
 \newtheorem*{proposition}{Behauptung}
 \newtheorem*{definition}{Definition}
@@ -80,33 +81,69 @@
         Wenn $T^*$ das Optimum ist, dann findet ein 2-Approximationsalgorithmus
         ein $T$ mit $2T \geq T^*$.
         Wir geben ein Gegenbeispiel, um zu zeigen, dass der gegebene Algorithmus
-        \textit{kein} 2-Approximationsalgorithmus ist:\\
+        \textit{kein} 2-Approximationsalgorithmus ist:
+
         Sei $B = 5$ und $A = \{1, 5, 5\}$. Offensichtlich ist $T^* = 5$
         mit $S= \{5\}$, aber der Algorithmus findet $T = 1$ mit $S = \{1\}$.
-        $\square$
+        \qed
     \item % b)
         Wir ergänzen den Algorithmus aus 1a) um einen Sortieralgorithmus
-        mit Laufzeit $O(n \log n)$, z.B. Merge-Sort oder Heap-Sort, und
-        sortieren damit $S$ nach absteigender Elementgröße (d.h. das größte
+        mit Laufzeit $\Oh(n \log n)$, z.B. Merge-Sort oder Heap-Sort, und
+        sortieren damit $A$ nach absteigender Elementgröße (d.h. das größte
         Element ist $a_1$).
         Danach wenden wir einfach wieder den Algorithmus aus 1a) an, und erhalten
-        eine Laufzeit von $O(n \log n + n)$, was in $O(n \log n)$ liegt.
+        eine Laufzeit von $\Oh(n \log n + n)$, was in $\Oh(n \log n)$ liegt.
         \\
         \begin{proposition}
         Unser Algorithmus ist ein 2-Approximationsalgorithmus.
         \end{proposition}
+        %\begin{proof}
+        %    Unser Algorithmus fügt automatisch das größte Element kleiner $B$ in $S$ ein.
+        %    Existiert ein solches Element in $S$, das auch größer als $\frac{1}{2}B$
+        %    ist, so gilt schon $2T \geq T^*$, denn $T^* \leq B$ gilt immer.
+        %    Gibt es kein Element $\geq \frac{1}{2}B$ und $<B$, so fügt unser Algorithmus
+        %    zwangsweise genug Elemente hinzu, bis entweder $T \geq \frac{1}{2}B$, oder alle
+        %    validen Elemente verbraucht sind. Im ersten Fall ist die Annahme wieder offensichtlich erfüllt.
+        %    Im zweiten Fall gilt offensichtlich:
+        %    \begin{align*}
+        %        T = T^* = \sum_{i=0}^{n}a_i | a_i \in A \wedge a_i < B
+        %    \end{align*}
+        %    $\square$
+        %\end{proof}
         \begin{proof}
-            Unser Algorithmus fügt automatisch das größte Element kleiner $B$ in $S$ ein.
-            Existiert ein solches Element in $S$, das auch größer als $\frac{1}{2}B$
-            ist, so gilt schon $2T \geq T^*$, denn $T^* \leq B$ gilt immer.
-            Gibt es kein Element $\geq \frac{1}{2}B$ und $<B$, so fügt unser Algorithmus
-            zwangsweise genug Elemente hinzu, bis entweder $T \geq \frac{1}{2}B$, oder alle
-            validen Elemente verbraucht sind. Im ersten Fall ist die Annahme wieder offensichtlich erfüllt.
-            Im zweiten Fall gilt offensichtlich:
-            \begin{align*}
-                T = T^* = \sum_{i=0}^{n}a_i | a_i \in A \wedge a_i < B
-            \end{align*}
-            $\square$
+            Wir gehen von folgenden Bedingungen aus (beide können in linearer
+            Zeit überprüft werden).
+            \begin{itemize}
+                \item $\forall a_i \in A : a_i \leq B$ (keine unnützen Elemente)
+                \item $\sum_{a_i \in A} a_i > B$ (keine triviale Lösung)
+            \end{itemize}
+
+            Sei $S^\ast$ eine optimale Lösung mit Summe $T^\ast$ und $S$ die
+            Lösung des angegebenen Algorithmus mit Summe $T$.
+
+            Sei $A = \{a_1, a_2, \dotsc, a_n\}$ mit $i < j \gdw a_i < a_j$.
+            Da $T^\ast \leq B$ sein muss, folgt $\frac{T^\ast}{2} \leq \frac{B}{2}$.
+
+            Nun unterscheiden wir zwei Fälle:
+            \begin{itemize}
+                \item $\exists a_i \in A : a_i \geq \frac{B}{2}$: \\
+                    Dann ist auch $a_1 \geq \frac{B}{2}$. Da $a_1$ das größte
+                    Element ist und $a_1 < B$ gilt, wird $a_1$ auf jeden Fall
+                    (und zuerst) gewählt.
+                    Damit gilt $T \geq \frac{B}{2} \geq \frac{T^\ast}{2}$
+                \item $\lnot\exists a_i \in A : a_i \geq \frac{B}{2}$: \\
+                    Angenommen, es sei $T < \frac{B}{2}$. Dann müssen noch
+                    ungewählte Elemente existieren: $A \setminus S \neq \emptyset$.
+                    Da $\forall a_i \in A : a_i < \frac{B}{2}$ gilt, hätte
+                    jedes übrig gebliebene Element gewählt werden können.
+                    Dies ist ein Widerspruch zu der im Algorithmus
+                    spezifizierten Bedingung: $T + a_i \leq B \Rightarrow a_i$
+                    wird gewählt.
+                    Daher muss die Annahme falsch und
+                    $T \geq \frac{B}{2} \geq \frac{T^\ast}{2}$ sein.
+            \end{itemize}
+            In beiden Fällen gilt $2 \geq \frac{T^\ast}{T}$; damit handelt es
+            sich um einen \approxalg{2}.
         \end{proof}
 
 \end{enumerate}
