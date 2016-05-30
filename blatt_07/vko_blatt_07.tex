@@ -30,6 +30,7 @@
 \definecolor{light-gray}{HTML}{cccccc}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{hhline}
 
 \newcommand{\approxalg}[1]{$#1$-Ap\-pro\-xi\-ma\-ti\-ons\-al\-go\-rith\-mus}
 
@@ -80,10 +81,30 @@
 \item % 2.
 \begin{enumerate}
     \item % a)
-        TODO
+        \begin{tabular}[t]{c||c|c|c|c|c|c|c|c|c|c|}
+            4 & 0 & 2 & 2 & 3 & 3 & 3 & 5 & 7 & 7 & \underline{8} \\ \hline
+            3 & 0 & 2 & 2 & 3 & 3 & 3 & 5 & 7 & 7 & 8 \\ \hline
+            2 & 0 & 0 & 1 & 1 & 1 & 1 & 5 & 5 & 6 & 6 \\ \hline
+            1 & 0 & 0 & 0 & 0 & 0 & 0 & 5 & 5 & 5 & 5 \\ \hline
+            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hhline{=#=|=|=|=|=|=|=|=|=|=|}
+              & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9\\
+        \end{tabular}
+        \\ \\
+        Gegenstände 1, 2 und 3 werden eingepackt. Das erreicht Gewicht ist 9,
+        und der erreichte Wert ist 8.
 
     \item % b)
-        TODO
+        \begin{tabular}[t]{c||c|c|c|c|c|c|c|c|c|c|c|c|}
+            4 & 0 & 1 & 1 & 3 & 6 & 6 & 7 & 7 & \underline{9} & 12 & 12 & 14 \\ \hline
+            3 & 0 & 1 & 1 & 3 & 6 & 6 & 7 & 7 & \underline{9} & $\infty$ & $\infty$ & $\infty$ \\ \hline
+            2 & 0 & 2 & 6 & 6 & 6 & 6 & \underline{8} & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ \\ \hline
+            1 & 0 & 6 & 6 & 6 & 6 & \underline{6} & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ \\ \hline
+            0 & 0 & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ \\ \hhline{=#=|=|=|=|=|=|=|=|=|=|=|=|}
+              & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\
+        \end{tabular}
+        \\ \\
+        Gegenstände 1, 2 und 3 werden eingepackt. Das erreicht Gewicht ist 9,
+        und der erreichte Wert ist 8.
 
 \end{enumerate}
 \end{enumerate}
