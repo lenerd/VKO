@@ -76,7 +76,69 @@
 
 \begin{enumerate}[label=\bfseries \arabic*.]
 \item % 1.
-    TODO
+    Wir formulieren das Hitting Set Problem als Integer Programming Problem
+    (IP-Problem):
+    \begin{equation*}
+        \begin{gathered}
+            \text{minimiere } \sum_{a_i \in A} x_i \cdot w_i \\
+            \text{unter den Bedingungen:} \\
+            \sum_{a_i \in B_j} x_i \geq 1 \quad j \in \{1, \dotsc, m\} \\
+            x_i \in \{0,1\} \quad i \in \{1, \dotsc, n\} \\
+        \end{gathered}
+    \end{equation*}
+    Eine opitmale Lösung des IP-Problems ist eine optimale Lösung des Hitting
+    Set Problems und umgekehrt. Die Variablen $x_i$ beschreiben das
+    Enthaltensein des dazugehörigen Elements $a_i$ im Hitting Set $H$.
+    \begin{equation*}
+        x_i =
+        \begin{cases}
+            0 & a_i \notin H \\
+            1 & a_i \in H \\
+        \end{cases}
+    \end{equation*}
+    Der Wertebereich der Variablen ist $\{0,1\}$, da jedes Element entweder in
+    $H$ enthalten ist oder nicht. Die weiteren Bedingungen sorgen dafür, dass
+    aus jeder Teilmenge $B_j$ mindestens ein Element auch in $H$ enthalten ist.
+
+    Wir wenden nun LP-Relaxation auf das Problem an. D.\,h. wir betrachten
+    modifizieren obiges IP-Problem, so dass die Variablen aus den
+    nichtnegativen reellen Zahlen gewählt werden.
+    \begin{equation*}
+        \begin{gathered}
+            \text{minimiere } \sum_{a_i \in A} x_i \cdot w_i \\
+            \text{unter den Bedingungen:} \\
+            \sum_{a_i \in B_j} x_i \geq 1 \quad j \in \{1, \dotsc, m\} \\
+            x_i \geq 0 \quad i \in \{1, \dotsc, n\} \\
+        \end{gathered}
+    \end{equation*}
+    Sei nun $x^\ast = (x^\ast_1, \dotsc, x^\ast_n)$ eine optimale Lösung dieses
+    LP-Problems.
+    Dann sei $S = \{ a_i \mid x^\ast_i \geq \frac{1}{b} \}$.
+    Wir zeigen nun, dass $S$ ein Hitting Set ist und höchtens das $b$-fache
+    Gewicht eines optimalen Hitting Sets besitzt.
+    (Es war $b = \max\{|B_j| : 1 \leq j \leq m\}$)
+
+    Da $x^\ast$ eine Lösung für das LP-Problem ist, gilt $\sum_{a_i \in B_j}
+    x^\ast_i \geq 1$ für jedes $B_j$.  Da $|B_j| \leq b$, muss es mindestens
+    einen Summanden $x^\ast_i \geq \frac{1}{b}$ in dieser Summe geben.
+    Es ist also $S \cap B_j \neq \emptyset$, $j \in \{1, \dotsc, m\}$ und $S$
+    ein Hitting Set.
+
+    Sei $S^\ast$ ein Hitting Set mit minimalem Gewicht. Dann gilt
+    \begin{equation*}
+        \begin{gathered}
+            \sum_{a_i \in S^\ast} w_i
+            \geq \sum_{a_i \in A} x^\ast_i \cdot w_i
+            \geq \sum_{a_i \in S} x^\ast_i \cdot w_i
+            \geq \sum_{a_i \in S} \frac{1}{b} \cdot w_i
+            \geq \frac{1}{b} \cdot \sum_{a_i \in S} w_i \\
+            \gdw \\
+            \frac{\sum_{a_i \in S} w_i}{\sum_{a_i \in S^\ast} w_i}
+            \leq b.
+        \end{gathered}
+    \end{equation*}
+    Die beschriebene Methode ist also ein $b$-Approximationsalgorithmus für das
+    Hitting Set Problem.
 
 \item % 2.
 \begin{enumerate}
