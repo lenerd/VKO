@@ -86,7 +86,7 @@
             x_i \in \{0,1\} \quad i \in \{1, \dotsc, n\} \\
         \end{gathered}
     \end{equation*}
-    Eine opitmale Lösung des IP-Problems ist eine optimale Lösung des Hitting
+    Eine optimale Lösung des IP-Problems ist eine optimale Lösung des Hitting
     Set Problems und umgekehrt. Die Variablen $x_i$ beschreiben das
     Enthaltensein des dazugehörigen Elements $a_i$ im Hitting Set $H$.
     \begin{equation*}
@@ -114,7 +114,7 @@
     Sei nun $x^\ast = (x^\ast_1, \dotsc, x^\ast_n)$ eine optimale Lösung dieses
     LP-Problems.
     Dann sei $S = \{ a_i \mid x^\ast_i \geq \frac{1}{b} \}$.
-    Wir zeigen nun, dass $S$ ein Hitting Set ist und höchtens das $b$-fache
+    Wir zeigen nun, dass $S$ ein Hitting Set ist und höchstens das $b$-fache
     Gewicht eines optimalen Hitting Sets besitzt.
     (Es war $b = \max\{|B_j| : 1 \leq j \leq m\}$)
 
@@ -137,26 +137,43 @@
             \leq b.
         \end{gathered}
     \end{equation*}
-    Die beschriebene Methode ist also ein $b$-Approximationsalgorithmus für das
-    Hitting Set Problem.
+    Die beschriebene Methode ist also ein \approxalg{b} für das Hitting Set
+    Problem.
 
 \item % 2.
-\begin{enumerate}
-    \item % a)
-        \begin{tabular}[t]{c||c|c|c|c|c|c|c|c|c|c|}
+    Die gegebene Eingabe ist
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c||c|c|c|c}
+            Item   & 1 & 2 & 3 & 4 \\ \hline \hline
+            Weight & 6 & 2 & 1 & 5 \\ \hline
+            Value  & 5 & 1 & 2 & 3 \\
+        \end{tabular}
+    \end{table}
+    mit einer Gewichtsbeschränkung von $W = 9$.
+
+    Das Problem wurde mit den Algorithmen Dynamic Programming 1 und 2 gelöst
+    (siehe Tabellen \ref{tab:dp1} und \ref{tab:dp2}).
+    Das Ergebnis ist jeweils die Auswahl der Items 1, 2 und 3 mit Gesamtgewicht
+    9 und erreichtem Wert 8.
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}[t]{c||c|c|c|c|c|c|c|c|c|c}
             4 & 0 & 2 & 2 & 3 & 3 & 3 & 5 & 7 & 7 & \underline{8} \\ \hline
-            3 & 0 & 2 & 2 & 3 & 3 & 3 & 5 & 7 & 7 & 8 \\ \hline
-            2 & 0 & 0 & 1 & 1 & 1 & 1 & 5 & 5 & 6 & 6 \\ \hline
-            1 & 0 & 0 & 0 & 0 & 0 & 0 & 5 & 5 & 5 & 5 \\ \hline
+            3 & 0 & 2 & 2 & 3 & 3 & 3 & 5 & 7 & 7 & \underline{8} \\ \hline
+            2 & 0 & 0 & 1 & 1 & 1 & 1 & 5 & 5 & \underline{6} & 6 \\ \hline
+            1 & 0 & 0 & 0 & 0 & 0 & 0 & \underline{5} & 5 & 5 & 5 \\ \hline
             0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hhline{=#=|=|=|=|=|=|=|=|=|=|}
               & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9\\
         \end{tabular}
-        \\ \\
-        Gegenstände 1, 2 und 3 werden eingepackt. Das erreicht Gewicht ist 9,
-        und der erreichte Wert ist 8.
+        \caption{Tabelle für Dynamic Programming 1}
+        \label{tab:dp1}
+    \end{table}
 
-    \item % b)
-        \begin{tabular}[t]{c||c|c|c|c|c|c|c|c|c|c|c|c|}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}[t]{c||c|c|c|c|c|c|c|c|c|c|c|c}
             4 & 0 & 1 & 1 & 3 & 6 & 6 & 7 & 7 & \underline{9} & 12 & 12 & 14 \\ \hline
             3 & 0 & 1 & 1 & 3 & 6 & 6 & 7 & 7 & \underline{9} & $\infty$ & $\infty$ & $\infty$ \\ \hline
             2 & 0 & 2 & 6 & 6 & 6 & 6 & \underline{8} & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ \\ \hline
@@ -164,10 +181,9 @@
             0 & 0 & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ \\ \hhline{=#=|=|=|=|=|=|=|=|=|=|=|=|}
               & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\
         \end{tabular}
-        \\ \\
-        Gegenstände 1, 2 und 3 werden eingepackt. Das erreicht Gewicht ist 9,
-        und der erreichte Wert ist 8.
+        \caption{Tabelle für Dynamic Programming 2}
+        \label{tab:dp2}
+    \end{table}
 
-\end{enumerate}
 \end{enumerate}
 \end{document}
