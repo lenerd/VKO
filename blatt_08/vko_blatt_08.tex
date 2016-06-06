@@ -1,0 +1,98 @@
+\documentclass[a4paper]{scrartcl}
+
+% font/encoding packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[ngerman]{babel}
+\usepackage[ngerman=ngerman-x-latest]{hyphsubst}
+
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{mathtools}
+\usepackage{array}
+\usepackage{stmaryrd}
+\usepackage{marvosym}
+\usepackage{subcaption}
+\allowdisplaybreaks{}
+\usepackage[output-decimal-marker={,}]{siunitx}
+\usepackage[shortlabels]{enumitem}
+\usepackage[section]{placeins}
+\usepackage{float}
+\usepackage{units}
+\usepackage{listings}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{arrows,automata}
+\usepackage{pdflscape}
+\usepackage{xcolor}
+\definecolor{light-gray}{HTML}{cccccc}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{hhline}
+
+\newcommand{\approxalg}[1]{$#1$-Ap\-pro\-xi\-ma\-ti\-ons\-al\-go\-rith\-mus}
+
+\newtheorem*{proposition}{Behauptung}
+\newtheorem*{definition}{Definition}
+\newcommand{\gdw}{\ \Leftrightarrow\ }
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Oh}{\mathcal{O}}
+\DeclareMathOperator{\im}{im}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\lstset{%
+    frame=single,
+    numbers=left,
+    keepspaces,
+    language=R,
+    title=Listing: \lstname,
+}
+
+\def \blattnr {8}
+
+\lhead{VKO -- Blatt {\blattnr}}
+\rhead{Alina Bombeck, Lennart Braun, Carolin Konietzny, Tronje Krabbe}
+\cfoot{\thepage}
+
+
+\title{Vertiefung Kombinatorische Optimierung}
+\subtitle{Blatt {\blattnr} Hausaufgaben}
+\author{%
+    Alina Bombeck, 6535392 (Gruppe 1) \and
+    Lennart Braun, 6523742 (Gruppe 1) \and
+    Carolin Konietzny, 6523939 (Gruppe 1) \and
+    Tronje Krabbe, 6435002 (Gruppe 3)
+}
+\date{zum 20. Juni 2016}
+\usepackage{pdfpages} 
+
+\begin{document}
+\maketitle
+
+
+\begin{enumerate}[label=\bfseries \arabic*.]
+\item % 1.
+    Gegeben: $ c(M) \leq \frac{1}{2} c(H^*)$.\\
+    Daraus können wir folgern:
+    \begin{equation*}
+        c(H) \leq c(T^+) = c(L) = c(M) + c(T) \leq \frac{1}{2} c(H^*) + c(H^*) = \frac{3}{2} c(H^*)
+        \qed
+    \end{equation*}
+    Da man in Schritt (4) $L$ durchläuft, und seine Knoten ohne Duplikate
+    wählt, gilt $c(H) \leq c(L)$. $L$ ergibt sich durch die Vereinigung von
+    $M$ und $T$, und $c(M) \leq \frac{1}{2}c(H^*)$ folgt aus der Annahme
+    ($\star$). $c(T) \leq c(H^*)$ ergibt sich daraus, dass, nimmt
+    man eine Kante aus $H^*$ weg, man einen minimalen aufspannenden Baum
+    erhält.
+
+\item % 2.
+    Wir nutzen einen Greedy-Algorithmus:\\
+    Nimm so lange ein beliebiges Tripel, bis es nicht mehr geht.
+    Dann passt das schon. $\qed$
+
+\end{enumerate}
+\end{document}
