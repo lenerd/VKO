@@ -92,7 +92,34 @@
 \item % 2.
     Wir nutzen einen Greedy-Algorithmus:\\
     Nimm so lange ein beliebiges Tripel, bis es nicht mehr geht.
-    Dann passt das schon. $\qed$
+    Dann passt das schon:
+    \begin{algorithm}
+        \begin{algorithmic}[1]
+            \Procedure{GreedyMax3DMatching}{$T,X,Y,Z$}
+            \State $M \gets \emptyset$
+            \State $U \gets \emptyset$
+            \For {$(x,y,z) \in T$}
+            \If {$x,y,z \notin U$}
+                \State $M \gets M \cup \{(x,y,z)\}$
+                \State $U \gets U \cup \{x,y,z\}$
+            \EndIf
+            \EndFor
+            \State \Return $M$
+            \EndProcedure
+        \end{algorithmic}
+    \end{algorithm}
+
+    Der Algorithmus iteriert über die Tripel aus $T$ in beliebiger Reihenfolge.
+    Passt ein $(x,y,z) \in T$ noch in das Matching, so wird es zu $M$ und die
+    $x,y,z$ der Menge der benutzten Elemente $U$ hinzugefügt.
+    Andernfalls ist eines der $x,y,z$ schon in $U$ enthalten und blockiert
+    dieses Tripel.
+    Der Algorithmus läuft in Polynomialzeit und das Ergebnis ist ein maximales
+    Matching, d.\,h. es kann kein weiteres Element hinzugefügt werden.
+
+    Sei $M^\ast$ ein optimales Matching.
+    Da jedes gewählte Tripel in $M$ sich mit höchstens drei Tripeln aus $M^\ast$
+    überschneiden (und deren Wahl blockieren) kann, ist $M \geq \frac{1}{3} M^\ast$.
 
 \end{enumerate}
 \end{document}
