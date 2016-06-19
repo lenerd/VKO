@@ -68,7 +68,7 @@
     Tronje Krabbe, 6435002 (Gruppe 3)
 }
 \date{zum 20. Juni 2016}
-\usepackage{pdfpages} 
+\usepackage{pdfpages}
 
 \begin{document}
 \maketitle
@@ -76,18 +76,28 @@
 
 \begin{enumerate}[label=\bfseries \arabic*.]
 \item % 1.
-    Gegeben: $ c(M) \leq \frac{1}{2} c(H^*)$.\\
-    Daraus können wir folgern:
-    \begin{equation*}
-        c(H) \leq c(T^+) = c(L) = c(M) + c(T) \leq \frac{1}{2} c(H^*) + c(H^*) = \frac{3}{2} c(H^*)
-        \qed
-    \end{equation*}
-    Da man in Schritt (4) $L$ durchläuft, und seine Knoten ohne Duplikate
-    wählt, gilt $c(H) \leq c(L)$. $L$ ergibt sich durch die Vereinigung von
-    $M$ und $T$, und $c(M) \leq \frac{1}{2}c(H^*)$ folgt aus der Annahme
-    ($\star$). $c(T) \leq c(H^*)$ ergibt sich daraus, dass, nimmt
-    man eine Kante aus $H^*$ weg, man einen minimalen aufspannenden Baum
-    erhält.
+    \begin{proposition}
+        Der gegebene Algorithmus ist ein \approxalg{\frac{3}{2}} für $\Delta$-TSP.
+    \end{proposition}
+    \begin{proof}
+        Zunächst gehen wir davon aus, dass $(\star)\ c(M) \leq \frac{1}{2} c(H^*)$ gilt.
+        Daraus können wir folgern
+        \begin{equation*}
+            c(H)
+            \leq c(T^+) = c(L) = c(M) + c(T)
+            \stackrel{(\star)}{\leq} \frac{1}{2} c(H^*) + c(H^*) = \frac{3}{2} c(H^*),
+        \end{equation*}
+        denn $c(H) \leq c(T^+) = c(L)$ folgt aus der Dreiecksungleichung, da man
+        bei der Eulertour abkürzt, und die Kosten des MSTs $T$ geringer sein
+        müssen, als die der optimalen TSP-Tour (sonst gäbe es einen billigeren
+        MST).
+
+        Nun zeigen wir, dass $(\star)$ gilt.
+        Sei $\tilde{H}^\ast$ ein optimaler Hamiltonkreis in $G'$. Da $M$ ein
+        Teil von $\tilde{H}^\ast$ ist (andernfalls wäre $M$ nicht minimal) und
+        die Dreiecksungleichung gilt, folgt
+        $c(M) \leq  \frac{1}{2}c(\tilde{H}^\ast) \leq \frac{1}{2}c(H^\ast)$.
+    \end{proof}
 
 \item % 2.
     Wir nutzen einen Greedy-Algorithmus:\\
