@@ -88,6 +88,89 @@
 \end{enumerate}
 
 \item % 2.
-    TODO
+    \underline{1. Iteration:}
+    \\
+    Profit-Tabelle:
+    \\
+    \begin{tabular}{c|c c c c}
+          & e & f & g & h \\
+        \hline
+        a & 2 & 3 & 3 & 1 \\
+        b & 4 & 3 & 1 & 1 \\
+        c & 2 & 3 & 3 & 1 \\
+        d & 3 & 4 & 0 & 0 \\
+    \end{tabular}
+    \\
+    Hieraus entnehmen wir, dass entweder $b$ und $e$, oder $d$ und $f$ getauscht werden sollten. Wir entscheiden uns für
+    $b$ und $e$ und erhalten den neuen Wert $w(A_1, B_1) = 7 - 4 = 3$, und die neue Aufteilung:
+    \\
+    \begin{tikzpicture}
+        \node[label=180:a,shape=circle,fill=black,minimum size=0.1cm] (a) at (0, 3) {};
+        \node[label=0:b,shape=circle,fill=black,minimum size=0.1cm] (b) at (3, 3) {};
+        \node[label=180:c,shape=circle,fill=black,minimum size=0.1cm] (c) at (0, 1) {};
+        \node[label=180:d,shape=circle,fill=black,minimum size=0.1cm] (d) at (0, 0) {};
+        \node[label=180:e,shape=circle,fill=black,minimum size=0.1cm] (e) at (0, 2) {};
+        \node[label=0:f,shape=circle,fill=black,minimum size=0.1cm] (f) at (3, 2) {};
+        \node[label=0:g,shape=circle,fill=black,minimum size=0.1cm] (g) at (3, 1) {};
+        \node[label=0:h,shape=circle,fill=black,minimum size=0.1cm] (h) at (3, 0) {};
+
+        \draw (a) -- (e);
+        \draw (a) -- (f);
+        \draw (b) -- (f);
+        \draw (b) .. controls(3.3,2) .. (g);
+        \draw (c) -- (e);
+        \draw (c) -- (f);
+        \draw (d) -- (g);
+        \draw (g) -- (h);
+    \end{tikzpicture}
+
+    \underline{2. Iteration}
+    \\
+    Profit-Tabelle:
+    \\
+    \begin{tabular}{c|c c c}
+          & f & g & h \\
+        \hline
+        a & -1 & -1 & -1 \\
+        c & -1 & -1 & -1 \\
+        d & 2 & -2 & 0 \\
+    \end{tabular}
+    \\
+    Hier ist leicht zu erkennen, dass wir $d$ und $f$ tauschen sollten, für einen
+    verbesserten Wert von $w(A_2, B_2) = 3 - 2 = 1$, und eine neue Aufteilung:
+    \\
+    \begin{tikzpicture}
+        \node[label=180:a,shape=circle,fill=black,minimum size=0.1cm] (a) at (0, 3) {};
+        \node[label=0:b,shape=circle,fill=black,minimum size=0.1cm] (b) at (3, 3) {};
+        \node[label=180:c,shape=circle,fill=black,minimum size=0.1cm] (c) at (0, 1) {};
+        \node[label=0:d,shape=circle,fill=black,minimum size=0.1cm] (d) at (3, 2) {};
+        \node[label=180:e,shape=circle,fill=black,minimum size=0.1cm] (e) at (0, 2) {};
+        \node[label=180:f,shape=circle,fill=black,minimum size=0.1cm] (f) at (0, 0) {};
+        \node[label=0:g,shape=circle,fill=black,minimum size=0.1cm] (g) at (3, 1) {};
+        \node[label=0:h,shape=circle,fill=black,minimum size=0.1cm] (h) at (3, 0) {};
+
+        \draw (a) -- (e);
+        \draw (a) .. controls(0.4,1.5) .. (f);
+        \draw (b) -- (f);
+        \draw (b) .. controls(3.3,2) .. (g);
+        \draw (c) -- (e);
+        \draw (c) -- (f);
+        \draw (d) -- (g);
+        \draw (g) -- (h);
+    \end{tikzpicture}
+    
+    \underline{3. Iteration}
+    \\
+    Profit-Tabelle:
+    \\
+    \begin{tabular}{c|c c}
+          & g & h \\
+        \hline
+        a & -5 & -3 \\
+        c & -5 & -3 \\
+    \end{tabular}
+    \\
+    Da hier nur negative Werte vorhanden sind, ist keine weitere Verbesserung
+    möglich.
 \end{enumerate}
 \end{document}
