@@ -81,7 +81,18 @@
         TODO
 
     \item % b)
-        TODO
+        Gilt $T_1 > T_2$, so wird der größte Job aus $T_1$, der $|T_1 - T_2|$ verbessert, `$t_x$', nach $T_2$ geschoben.
+        Danach tritt einer der folgenden Fälle auf:
+        \begin{itemize}
+            \item $T_1 = T_2$ $\Rightarrow$ der Algorithmus terminiert ($t_x$ wird also nicht mehrmals verschoben).
+            \item $T_1 > T_2$ $\Rightarrow$ es wird weiter von $T_1$ nach $T_2$ geschoben, $t_x$ wird also ebenfalls
+                nicht mehrfach verschoben.
+            \item $T_1 < T_2$ $\Rightarrow$ $|T_1 - T_2|$ war vorher kleiner als $t_x$. Da sich die Differenze
+                verkleinert hat, muss nun $|T_1 - T_2| < \frac{1}{2} t_x$ gelten.
+                D.h. $t_x$ kann nicht zurück geschoben werden, da $|T_1 - T_2|$ dadurch nicht verbessert werden kann.
+        \end{itemize}
+        Ergo: einmal verschobene Jobs werden nicht wieder zurückgeschoben.\\
+        $\Rightarrow$ ``Bei $n$ Jobs sind höchstens $n$ Iterationen möglich.''
 
     \item % c)
         Wir betrachten folgende Konfiguration:
