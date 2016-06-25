@@ -1,5 +1,7 @@
 \documentclass[a4paper]{scrartcl}
 
+\usepackage{scrlayer-scrpage}
+
 % font/encoding packages
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -41,9 +43,6 @@
 \newcommand{\Oh}{\mathcal{O}}
 \DeclareMathOperator{\im}{im}
 
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-
 \lstset{%
     frame=single,
     numbers=left,
@@ -54,9 +53,12 @@
 
 \def \blattnr {9}
 
-\lhead{VKO -- Blatt {\blattnr}}
-\rhead{Alina Bombeck, Lennart Braun, Carolin Konietzny, Tronje Krabbe}
-\cfoot{\thepage}
+\lohead{VKO -- Blatt {\blattnr}}
+\rohead{Alina Bombeck, Lennart Braun, Carolin Konietzny, Tronje Krabbe}
+\cofoot{\pagemark}
+\setkomafont{pageheadfoot}{\textrm}
+\KOMAoption{headsepline}{0.5pt:headsepline}
+\pagestyle{scrheadings}
 
 
 \title{Vertiefung Kombinatorische Optimierung}
