@@ -111,10 +111,87 @@
 
 
 \item % 2.
-    \begin{enumerate}
-        \item
-        \item
-    \end{enumerate}
+\begin{enumerate}
+    \item
+        $S$ ist konfliktfrei, da ein Knoten $v_i$ nur enthalten ist, wenn
+        $x_i = 1$ und $x_j = 0$ für alle Nachbarn $v_j$ von $v_i$ gilt; wegen
+        letzterer Bedingung können die Nachbarn nicht in $S$ enthalten sein.
+
+        Seien $X_i := \mathbf{1}_S(v_i)$ die Indikatorzufallsvariable, die
+        anzeigt, ob $v_i$ in $S$ enthalten ist und $X = \sum_{v_i \in V} X_i$.
+
+        Sei $\Pr[x_i = 1] = p = 1-q$ und $\Pr[x_i = 0] = (1-p) = q$ für alle
+        $v_i$.
+        Zunächst ist $q = \frac{1}{2}$.
+
+        Da die $x_i$ unabhängig sind, gilt
+        \begin{equation*}
+            \Pr[X_i = 1]
+            = \Pr[x_i = 1] \cdot \prod_{v_j \in N(v_i)} \Pr[x_j = 0]
+            = (1-q) \cdot q^d
+            = \frac{1}{2^{d+1}}
+        \end{equation*}
+        Wobei $N(v_i)$ die Nachbarschaft von $v_i$ ist, mit $|N(v_i)| = d$.
+
+        Für den Erwartungswert folgt
+        \begin{equation*}
+            \E[X]
+            = \E\left[ \sum_{v_i \in V} X_i \right]
+            = \sum_{v_i \in V} \E[X_i]
+            = \sum_{v_i \in V} \Pr[X_i = 1]
+            = n \cdot \frac{1}{2^{d+1}}.
+        \end{equation*}
+
+    \item
+        Nun betrachten wir den Fall, dass $q$ nicht unbedingt gleich
+        $\frac{1}{2}$ ist.
+        Der Erwartungswert von $X$ ist minimal, wenn der Erwartungswert von den
+        $X_i$ minimal ist.
+        \begin{equation*}
+            \frac{\mathrm{d}}{\mathrm{d}q} \E[X_i]
+            = \frac{\mathrm{d}}{\mathrm{d}q} (1-q)q^d
+            = \frac{\mathrm{d}}{\mathrm{d}q} q^d - q^{d+1}
+            = dq^{d-1} -(d+1)q^d
+        \end{equation*}
+
+        Wir bestimmen das Maximum des Erwartungswertes:
+        \begin{equation*}
+            \begin{aligned}
+                & dq^{d-1} -(d+1)q^d = 0 \\
+                \gdw& q^{d-1}(d-(d+1)q) = 0 \\
+                \gdw& d-(d+1)q = 0 \qquad\qquad\qquad\qquad \text{da } q \neq 0 \\
+                \gdw& d = (d+1)q \\
+                \gdw& \frac{d}{d+1} = q
+            \end{aligned}
+        \end{equation*}
+        Bei $\frac{d}{d+1}$ ist also ein Extremum vorhanden.
+        Es ist
+        \begin{equation*}
+            \frac{\mathrm{d}^2}{\mathrm{d}q^2} \E[X_i]
+            = d(d-1)q^{d-2} - (d+1)dq^{d-1}.
+        \end{equation*}
+        $\frac{d}{d+1}$ eingesetzt:
+        \begin{equation*}
+            \begin{gathered}
+                d(d-1)\left(\frac{d}{d+1}\right)^{d-2}
+                - (d+1)d\left(\frac{d}{d+1}\right)^{d-1} \\
+                 = \left(\frac{d}{d+1}\right)^{d-2}
+                 \left(d(d-1) - (d+1)d \cdot \frac{d}{d+1}\right) \\
+                 = \underbrace{\left(\frac{d}{d+1}\right)^{d-2}}_{> 0}
+                 \underbrace{(d(d-1) - d^2)}_{< 0} < 0
+            \end{gathered}
+        \end{equation*}
+        Es gibt damit ein Maximum bei $p = 1-q = \frac{1}{d+1}$.
+
+        Bei optimaler Wahl von $p$ ist dann
+        \begin{equation*}
+            \E[X] = n \cdot (1-q) \cdot q^d
+            = n \cdot \frac{1}{d+1} \cdot \left(\frac{d}{d+1}\right)
+            = n \cdot \frac{d^d}{(d+1)^{d+1}}.
+        \end{equation*}
+
+
+\end{enumerate}
 
 
 \end{enumerate}
