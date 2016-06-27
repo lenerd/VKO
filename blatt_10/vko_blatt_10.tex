@@ -42,6 +42,8 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Oh}{\mathcal{O}}
 \DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Pr}{Pr}
+\DeclareMathOperator{\E}{E}
 
 \lstset{%
     frame=single,
@@ -78,6 +80,35 @@
 
 \begin{enumerate}[label=\bfseries \arabic*.]
 \item % 1.
+    Seien $d = \num{80000}$, $r = \num{20000}$.
+    $X$ gebe die Anzahl der Stimmen für $D$ an.
+    $X_i$ sei $1$, wenn Wähler $i$ für $D$ stimmt, sonst $0$.
+    Die ersten $d$ Wähler sind Anhänger von $D$, die folgenden $r$ von $R$.
+    Dann ist
+    \begin{equation*}
+        X = \sum_{i=1}^{d+r} X_i.
+    \end{equation*}
+    Nach Aufgabenstellung gilt
+    \begin{equation*}
+        \Pr[X_i = 1] =
+        \begin{cases}
+            \frac{99}{100}, 1 \leq i \leq d \\
+            \frac{1}{100}, d+1 \leq i \leq d+r. \\
+        \end{cases}
+    \end{equation*}
+    Mit der Linearität des Erwartungswertes folgt
+    \begin{equation*}
+        \begin{gathered}
+            \E[X]
+            = \E\left[ \sum_{i=1}^{d+r} X_i \right]
+            = \sum_{i=1}^{d+r} \E[X_i]
+            = \sum_{i=1}^{d+r} \Pr[X_i = 1] \\
+            = \sum_{i=1}^{d} \frac{99}{100} + \sum_{i=d+1}^{d+r} \frac{1}{100}
+            = d \cdot \frac{99}{100} + r \cdot \frac{1}{100}
+            = \num{79400}.
+        \end{gathered}
+    \end{equation*}
+
 
 \item % 2.
     \begin{enumerate}
